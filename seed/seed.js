@@ -13,6 +13,13 @@ const companiesSeed = [
         email: "jjung@skillstorm.com",
         isMasterUser: true,
         isParentCompany: true,
+    },
+    {
+        companyName: "childcompany",
+        password: "123",
+        email: "jjung@childCompany.com",
+        isMasterUser: false,
+        isParentCompany: false,
     }
 ]
 
