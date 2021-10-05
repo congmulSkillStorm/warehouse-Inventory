@@ -4,9 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Bootstrap CSS, Js -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/components/nav.css">
+    <link rel="stylesheet" href="styles/homePage.css">
+
+    <title>Warehouse Inventory System</title>
 </head>
 <body>
-    <h1>Home page</h1>
+    <header>
+          <nav class="navbar navbar-expand-lg p-3 navbar-light bg-white nav-style">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Navbar</a>
+              <div class="d-flex justify-content-evenly">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Create New Company</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="/api/company/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <div class="container contentBox">
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+          </div>
+    </header>
+    <main>
+        <section class="container contentBox">
+          <article>
+            <h1>Company A</h1>
+            <div class="companies-status">
+                <div>
+                  <h3>Warehouse: 2 <a  data-bs-toggle="collapse" href="#collapseCompany-01"><i class="fas fa-caret-down"></i></a></h3>
+                </div>
+                <div class="">
+                  <div class="collapse capacity-status" id="collapseCompany-01">
+                    <div class="container collapse-box">
+                      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3>Location: Washington</h3>
+                </div>
+            </div>
+          </article>
+
+          <article>
+            <h1>Company A</h1>
+            <div class="companies-status">
+                <div>
+                  <h3>Warehouse: 2 <a  data-bs-toggle="collapse" href="#collapseCompany-02"><i class="fas fa-caret-down"></i></a></h3>
+                </div>
+                <div class="">
+                  <div class="collapse capacity-status" id="collapseCompany-02">
+                    <div>
+                      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3>Location: Washington</h3>
+                </div>
+            </div>
+          </article>
+            
+        </section>
+    </main>
 </body>
 </html>

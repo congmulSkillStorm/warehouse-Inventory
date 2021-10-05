@@ -6,37 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/loginForm.css">
     <title>Warehouse Inventory System</title>
 </head>
 <body>
-    <main class="loginFrom-main">
-        <h3>Warehouse Inventory System</h3>
-        <form action='/api/company/login' method='POST' class="row g-3 needs-validation align-items-center" novalidate>
-            <div class="row-md-4">
-                <label for="inputCompanyName" class="col-form-label">Company name</label>
-                <input type="text" class="form-control" id="inputCompanyName" name="inputCompanyName" required>
-                <div class="valid-feedback">
-                  Looks good!
-                </div>
-                <div class="invalid-feedback">
-                  Please enter a company name.
-                </div>
-            </div>
-            <div class="row-md-4">
-                <label for="inputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword" name="inputPassword" required>
-                <div class="valid-feedback">
-                  Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please enter your password.
-                </div>
-            </div>
-            <div class="row-md-4">
-              <button class="btn btn-primary" type="submit">Log in</button>
-            </div>
+    <main class="loginForm-main">
+        <div class="contentBox">
+          <h3>Warehouse Inventory System</h3>
+          <form action='/api/company/login' method='POST' class="row g-3 needs-validation align-items-center" novalidate>
+              <div class="row-md-4">
+                  <label for="inputCompanyName" class="col-form-label">Company name</label>
+                  <input type="text" class="form-control" id="inputCompanyName" name="inputCompanyName" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Please enter a company name.
+                  </div>
+              </div>
+              <div class="row-md-4">
+                  <label for="inputPassword" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="inputPassword" name="inputPassword" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                      Please enter your password.
+                  </div>
+              </div>
+              <div class="row-md-4">
+                <button class="btn btn-primary" type="submit">Log in</button>
+              </div>
           </form>
+        </div>
     </main>
 
     <script src="scripts/loginForm.js"></script>

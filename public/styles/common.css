@@ -1,0 +1,7 @@
+.contentBox {
+    margin-bottom: 30px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px gray;
+}
