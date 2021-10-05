@@ -1,5 +1,5 @@
 import express from 'express';
-// import routes from './routes/index.js';
+import routes from './routes/index.js';
 
 export default function () {
     const app = express();
@@ -8,7 +8,7 @@ export default function () {
     app.use(express.json());
     app.use(express.static("public"));
     
-    // app.use('/', routes);
+    app.use('/', routes);
     
     return app;
 };

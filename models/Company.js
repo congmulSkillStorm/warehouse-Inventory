@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const companySchema = new Schema({
     companyName: { type : String, required: true },
     password: { type : String, required: true },
-    email: { type : String, required: true },
+    email: { type : String, required: true, unique: true },
     isMasterUser: { type: Boolean, default: false },
     isParentCompany: { type: Boolean, default: false },
     childCompany: [ { type: Schema.Types.ObjectId, ref: 'Company' } ], // Self Referencing 
