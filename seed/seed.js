@@ -9,7 +9,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/warehouse-inven
 const companiesSeed = [
     {
         companyName: "skillstorm",
-        password: "password",
+        password: "123",
         email: "jjung@skillstorm.com",
         isMasterUser: true,
         isParentCompany: true,

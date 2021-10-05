@@ -12,10 +12,10 @@
 <body>
     <main class="loginFrom-main">
         <h3>Warehouse Inventory System</h3>
-        <form class="row g-3 needs-validation align-items-center" novalidate>
+        <form action='/api/company/login' method='POST' class="row g-3 needs-validation align-items-center" novalidate>
             <div class="row-md-4">
                 <label for="inputCompanyName" class="col-form-label">Company name</label>
-                <input type="text" class="form-control" id="inputCompanyName" required>
+                <input type="text" class="form-control" id="inputCompanyName" name="inputCompanyName" required>
                 <div class="valid-feedback">
                   Looks good!
                 </div>
@@ -25,7 +25,7 @@
             </div>
             <div class="row-md-4">
                 <label for="inputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword" required>
+                <input type="password" class="form-control" id="inputPassword" name="inputPassword" required>
                 <div class="valid-feedback">
                   Looks good!
                 </div>

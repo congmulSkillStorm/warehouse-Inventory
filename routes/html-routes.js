@@ -7,9 +7,9 @@ router.get('/', (req, res) => {
     res.status(200).sendFile(resolve('public', 'views', 'pages', 'loginForm.html'));
 })
 
-// router.get('/sign', (req, res) => {
-//     res.status(200).sendFile(resolve('public', 'views', 'pages', 'sign.html'));
-// })
+router.get('/home', (req, res) => {
+    res.status(200).sendFile(resolve('public', 'views', 'pages', 'homePage.html'));
+})
 
 // router.get('/account', (req, res) => {
 //     res.status(200).sendFile(resolve('public', 'views', 'components', 'account.html'));
