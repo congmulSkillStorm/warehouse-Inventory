@@ -1,0 +1,10 @@
+// To use Jest in ES6 environment.
+//  1. Configure test environment to Babel
+//  2. Add ECMAScript 6 transform plugin : npm install --save-dev @babel/plugin-transform-modules-commonjs
+{
+    "env": {
+      "test": {
+        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+      }
+    }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "warehouse-Inventory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/congmulSkillStorm/warehouse-Inventory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/congmulSkillStorm/warehouse-Inventory/issues"
+  },
+  "homepage": "https://github.com/congmulSkillStorm/warehouse-Inventory#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.9"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "jest": "^27.2.4",
+    "supertest": "^6.1.6"
+  }
+}
