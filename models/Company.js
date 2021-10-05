@@ -9,6 +9,8 @@ const companySchema = new Schema({
     email: { type : String, required: true },
     isMasterUser: { type: Boolean, default: false },
     isParentCompany: { type: Boolean, default: false },
+    childCompany: [ { type: Schema.Types.ObjectId, ref: 'Company' } ], // Self Referencing 
+
     createAt: { type: Date, default: Date.now }
 })
 
