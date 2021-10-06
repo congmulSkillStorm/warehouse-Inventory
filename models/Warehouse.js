@@ -1,12 +1,14 @@
 import mongoose from 'mongoose';
 
+import productSchema from './Product.js';
 const Schema = mongoose.Schema;
 
 const warehouseSchema = new Schema({
-    firstName: { type : String, required: true },
     warehouseName: { type : String, required: true },
-    password: { type : String, required: true },
-    email: { type : String, required: true },
+    address: String,
+    maxCapacity: { type: Number, required: true },
+    currentCapacity: Number,
+    product: [productSchema],
     createAt: { type: Date, default: Date.now }
 })
 

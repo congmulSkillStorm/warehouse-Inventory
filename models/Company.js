@@ -10,7 +10,12 @@ const companySchema = new Schema({
     isMasterUser: { type: Boolean, default: false },
     isParentCompany: { type: Boolean, default: false },
     childCompany: [ { type: Schema.Types.ObjectId, ref: 'Company' } ], // Self Referencing 
-
+    warehouse: [ {type:Schema.Types.ObjectId, ref: 'Warehouse'}],
+    warehouseBasicInfo: [ {
+        warehouseName: String,
+        maxCapacity: Number,
+        currentCapacity: Number
+    }],
     createAt: { type: Date, default: Date.now }
 })
 
