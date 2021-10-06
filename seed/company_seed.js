@@ -13,6 +13,7 @@ const companiesSeed = [
         email: "jjung@skillstorm.com",
         isMasterUser: true,
         isParentCompany: true,
+        location: 'Florida'
     },
     {
         companyName: "childcompanyA",
@@ -20,6 +21,7 @@ const companiesSeed = [
         email: "jjung@childCompanyA.com",
         isMasterUser: false,
         isParentCompany: false,
+        location: 'Washinton'
     },
     {
         companyName: "childcompanyB",
@@ -27,6 +29,7 @@ const companiesSeed = [
         email: "jjung@childCompanyB.com",
         iBMasterUser: false,
         isParentCompany: false,
+        location: 'Kansas'
     },
     {
         companyName: "childcompanyC",
@@ -34,6 +37,7 @@ const companiesSeed = [
         email: "jjung@childCompanyC.com",
         isMasterUser: false,
         isParentCompany: false,
+        location: 'Texas'
     },
     {
         companyName: "childcompanyD",
@@ -41,6 +45,7 @@ const companiesSeed = [
         email: "jjung@childCompanyD.com",
         isMasterUser: false,
         isParentCompany: false,
+        location: 'Arizona'
     },
     {
         companyName: "childcompanyE",
@@ -48,6 +53,7 @@ const companiesSeed = [
         email: "jjung@childCompanyE.com",
         isMasterUser: false,
         isParentCompany: false,
+        location: 'Ohio'
     },
     {
         companyName: "childcompanyF",
@@ -55,6 +61,7 @@ const companiesSeed = [
         email: "jjung@childCompanyF.com",
         isMasterUser: false,
         isParentCompany: false,
+        location: 'Idaho'
     },
     {
         companyName: "childcompanyG",
@@ -62,6 +69,7 @@ const companiesSeed = [
         email: "jjung@childCompanyG.com",
         isMasterUser: false,
         isParentCompany: false,
+        location: 'Georgia'
     }
 ]
 

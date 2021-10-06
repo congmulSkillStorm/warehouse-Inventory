@@ -1,4 +1,5 @@
 const withParentCompany = (req, res, next) => {
+    console.log(req.session.companyId);
     if(!req.session.loggedIn){
         res.redirect("/");
     }

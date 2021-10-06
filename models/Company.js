@@ -9,6 +9,7 @@ const companySchema = new Schema({
     email: { type : String, required: true, unique: true },
     isMasterUser: { type: Boolean, default: false },
     isParentCompany: { type: Boolean, default: false },
+    location: String,
     childCompany: [ { type: Schema.Types.ObjectId, ref: 'Company' } ], // Self Referencing 
     warehouse: [ {type:Schema.Types.ObjectId, ref: 'Warehouse'}],
     warehouseBasicInfo: [ {

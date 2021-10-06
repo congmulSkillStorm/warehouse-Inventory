@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createCompany, loginCompany } from '../../controllers/company.js';
+import { createCompany, loginCompany, getChildCompanies } from '../../controllers/company.js';
 
 const router = Router();
 
@@ -34,13 +34,13 @@ router.post('/login', async (req, res) => {
                 res.status(200).redirect('/warehouse');
             }
         });
-
     }catch(err) {
         res.status(500).json(err);
     }
 })
 
 router.get('/logout', (req, res) => {
+    console.log(req.session.companyId);
     if(req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(200).redirect('/');
@@ -49,5 +49,22 @@ router.get('/logout', (req, res) => {
         res.status(404).end();
     }
 });
+
+// Get Company populating Child Company
+router.get('/', async (req, res) => {
+    // const companyId = req.session.companyId;
+    // console.log("companyId", companyId);
+    try {
+        const companyId = req.session.companyId;
+        console.log("companyId", companyId);
+        const response = await getChildCompanies(companyId);
+        console.log(response);
+        res.status(200).json(response);
+
+    }catch(err) {
+        console.error(err)
+        res.status(500).json(err);
+    }
+})
 
 export default router;
