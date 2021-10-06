@@ -1,3 +1,13 @@
+
+#display-child-company article {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    margin-bottom: 20px;
+}
+#display-child-company article:last-child {
+    border-bottom: 0px;
+}
+
 .companies-status{
     padding: 10px 25px;
 }

@@ -7,6 +7,7 @@ const productSchema = new Schema({
     productName: { type : String, required: true },
     sqft: Number,
     quantity: Number,
+    color: String,
     createAt: { type: Date, default: Date.now }
 })
 

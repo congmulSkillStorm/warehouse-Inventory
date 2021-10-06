@@ -7,7 +7,7 @@ const warehouseSchema = new Schema({
     warehouseName: { type : String, required: true },
     address: String,
     maxCapacity: { type: Number, required: true },
-    currentCapacity: Number,
+    currentCapacity: { type: Number, default: 0 },
     product: [productSchema],
     createAt: { type: Date, default: Date.now }
 })

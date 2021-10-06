@@ -1,6 +1,6 @@
 const calculatePercentage = (currentCapacity, maxCapacity) => {
     let used = ((currentCapacity / maxCapacity) * 100).toFixed(2);
-    let available = 100 - used;
+    let available = (100 - used).toFixed(2);
 
     return { used, available}
 }
@@ -138,7 +138,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         let allWarehouse = [];
         childCompanies[0].childCompany.forEach(company => {
             if(company.warehouseBasicInfo.length > 0){
-                allWarehouse = [...company.warehouseBasicInfo];
+                allWarehouse = [...allWarehouse, ...company.warehouseBasicInfo];
             }
         }) 
 
