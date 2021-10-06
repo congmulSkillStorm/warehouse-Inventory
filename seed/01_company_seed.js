@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Company } from '../models/index.js';
+import { Company, ParentCompany } from '../models/index.js';
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/warehouse-inventory', {
   useNewUrlParser: true,
@@ -74,14 +74,6 @@ const companiesSeed = [
 ]
 
 const companiesSeedv2 = [
-    {
-        companyName: "skillstorm",
-        password: "123",
-        email: "jjung@skillstorm.com",
-        isMasterUser: true,
-        isParentCompany: true,
-        location: 'Florida'
-    },
     {"companyName":"Zoonder","password":"DCISKGM","email":"sfleetham0@wix.com","location":"Louisiana"},
     {"companyName":"Youtags","password":"OtrslIl","email":"ablondin1@wordpress.com","location":"Ohio"},
     {"companyName":"Meeveo","password":"QbftGpt6eZV","email":"jbakey2@craigslist.org","location":"Virginia"},
@@ -94,21 +86,24 @@ const companiesSeedv2 = [
     {"companyName":"Fivebridge","password":"v4gXrgh3ll","email":"nnannoni9@accuweather.com","location":"California"}]
 async function runSeed() {
     try{
+        let parentCompanies = await ParentCompany.find();
         let masterUserId;
+        parentCompanies.forEach(parentCompany => {
+            if(parentCompany.isMasterUser){
+                masterUserId = parentCompany._id;
+            }
+        })
+
         let count = 0;
         await Company.deleteMany({});
         for( const company of companiesSeedv2 ){
             count++;
-            console.log(company);
+
+            // Create Child Company
             let newCompany = await new Company(company).save();
-
-            if(newCompany.isParentCompany){
-                masterUserId = newCompany._id;
-            }
-
-            if(!newCompany.isParentCompany){
-                await Company.findByIdAndUpdate(masterUserId, {$push: {childCompany : newCompany._id}})
-            }
+            
+            // Add Child Company to MasterUser of Parent Company
+            await ParentCompany.findByIdAndUpdate(masterUserId, {$push: {childCompany : newCompany._id}})
         }
         console.log(count+ " records inserted!");
         mongoose.connection.close();

@@ -8,6 +8,7 @@ const warehouseSchema = new Schema({
     address: String,
     maxCapacity: { type: Number, required: true },
     currentCapacity: { type: Number, default: 0 },
+    childCompanyId: String,
     product: [productSchema],
     createAt: { type: Date, default: Date.now }
 })
