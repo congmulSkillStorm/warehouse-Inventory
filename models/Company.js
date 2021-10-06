@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const companySchema = new Schema({
     companyName: { type : String, required: true },
-    password: { type : String, required: true },
+    password: { type : String, required: false },
     email: { type : String, required: true, unique: true },
     isMasterUser: { type: Boolean, default: false },
     isParentCompany: { type: Boolean, default: false },
@@ -14,7 +14,7 @@ const companySchema = new Schema({
     createAt: { type: Date, default: Date.now }
 })
 
-// // built-in methods in Schema object
+// built-in methods in Schema object
 companySchema.pre('save', async function(next) {
     const saltRounds = 10;
     // isNew: Boolean flag specifying if the document is new.
