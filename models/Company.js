@@ -13,6 +13,7 @@ const companySchema = new Schema({
     childCompany: [ { type: Schema.Types.ObjectId, ref: 'Company' } ], // Self Referencing 
     warehouse: [ {type:Schema.Types.ObjectId, ref: 'Warehouse'}],
     warehouseBasicInfo: [ {
+        _id: String,
         warehouseName: String,
         maxCapacity: Number,
         currentCapacity: Number

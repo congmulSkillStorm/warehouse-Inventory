@@ -63,8 +63,8 @@ async function runSeed() {
         for( const warehouse of warehouseSeed ){
             let newWarehouse = await new Warehouse(warehouse).save();
             
-            await Company.findByIdAndUpdate('615dbdc7cafd56a26ef3cd35', {$push: {warehouse : newWarehouse._id}})
-            await Company.findByIdAndUpdate('615dbdc7cafd56a26ef3cd35', {$push: {warehouseBasicInfo: {warehouseName : newWarehouse.warehouseName, maxCapacity:newWarehouse.maxCapacity, currentCapacity: newWarehouse.currentCapacity}}})
+            await Company.findByIdAndUpdate('615dc0e356ba140dd788d8cc', {$push: {warehouse : newWarehouse._id}})
+            await Company.findByIdAndUpdate('615dc0e356ba140dd788d8cc', {$push: { warehouseBasicInfo: {_id: newWarehouse._id, warehouseName : newWarehouse.warehouseName, maxCapacity:newWarehouse.maxCapacity, currentCapacity: newWarehouse.currentCapacity}}})
             count++;
         }
         console.log(count+ " records inserted!");

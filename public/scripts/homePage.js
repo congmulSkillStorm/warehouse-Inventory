@@ -10,7 +10,7 @@ const warehouseHTMLquery = (warehouseData) => {
         </div>
         <div class="col-9 fixed-height-chart">
           <div class="capacity-ft">${warehouse.currentCapacity} <span>ft</span> available of ${warehouse.maxCapacity} <span>ft</span></div>
-          <canvas id="myChart02"></canvas>
+          <canvas id="chart-${warehouse._id}"></canvas>
         </div>
       </div>`
     })
