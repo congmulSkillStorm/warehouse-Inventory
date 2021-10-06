@@ -1,3 +1,78 @@
+const calculatePercentage = (currentCapacity, maxCapacity) => {
+    let used = ((currentCapacity / maxCapacity) * 100).toFixed(2);
+    let available = 100 - used;
+
+    return { used, available}
+}
+
+const displayGraph = (warehouse) => {
+
+    let percentages = calculatePercentage(warehouse.currentCapacity, warehouse.maxCapacity)
+    // console.log(percentages);
+    const labels = [
+        `${warehouse.warehouseName}`
+      ];
+      const data = {
+        labels: labels,
+        datasets: [
+          {
+          label: 'Used',
+          backgroundColor: 'rgb(255, 99, 132)',
+          data: [percentages.used],
+        },
+        {
+          label: 'Available',
+          backgroundColor: 'rgb(230, 230, 230)',
+          data: [percentages.available],
+        },
+      ]
+      };
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              x: {
+                  display: false,
+                  stacked: true
+              },
+              y: {
+                  display: false,
+                  stacked: true
+              }
+          },
+          plugins: {
+            legend: {
+              align: 'end',
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                  label: function(context) {
+                    let myLabel = context['dataset']['label']+': ' + context['raw'] + '%';
+                    return myLabel;
+                  },
+
+                  title: function(context) {
+                    return;
+                  }
+              },
+              titleMarginBottom: 0
+            }
+          }
+
+        }
+      };
+
+      return new Chart(
+        document.getElementById(`chart-${warehouse._id}`),
+        config
+      );
+}
+
 const warehouseHTMLquery = (warehouseData) => {
     let allqueries = "";
 
@@ -14,23 +89,12 @@ const warehouseHTMLquery = (warehouseData) => {
         </div>
       </div>`
     })
-//     let query = `<div class="row collapse-box-warehouse">
-//     <div class="col-3 warehouse-name">
-//       <p>
-//         Warehouse name :
-//       </p> 
-//     </div>
-//     <div class="col-9 fixed-height-chart">
-//       <div class="capacity-ft">2040 <span>ft</span> available of 5000 <span>ft</span></div>
-//       <canvas id="myChart02"></canvas>
-//     </div>
-//   </div>`
 
   return allqueries;
 }
 
 const childCompanyHTMLquery = (companyData) => {
-    console.log(companyData, 'in childCOmpanyHTMLquery func')
+    // console.log(companyData, 'in childCOmpanyHTMLquery func')
     return `
 <article>
   <h1>${companyData.companyName}</h1>
@@ -69,6 +133,19 @@ window.addEventListener('DOMContentLoaded', async () => {
         console.log(childCompanies);
         const allCompanyQuery = displayAllChildCompanies(childCompanies[0]);
         document.getElementById('display-child-company').innerHTML = allCompanyQuery;
+
+        // Display Graph
+        let allWarehouse = [];
+        childCompanies[0].childCompany.forEach(company => {
+            if(company.warehouseBasicInfo.length > 0){
+                allWarehouse = [...company.warehouseBasicInfo];
+            }
+        }) 
+
+        console.log("allWarehouse", allWarehouse)
+        allWarehouse.forEach(warehouse => {
+            displayGraph(warehouse);
+        })
     }catch(err) {
         console.error(err);
     }
