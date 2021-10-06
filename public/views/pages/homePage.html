@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="styles/components/nav.css">
     <link rel="stylesheet" href="styles/homePage.css">
 
+    
+
     <title>Warehouse Inventory System</title>
 </head>
 <body>
@@ -52,7 +54,31 @@
                 <div class="">
                   <div class="collapse capacity-status" id="collapseCompany-01">
                     <div class="container collapse-box">
-                      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                      
+                      <div class="row collapse-box-warehouse">
+                        <div class="col-3 warehouse-name">
+                          <p>
+                            Warehouse name :
+                          </p> 
+                        </div>
+                        <div class="col-9 fixed-height-chart">
+                          <div class="capacity-ft">2040 <span>ft</span> available of 5000 <span>ft</span></div>
+                          <canvas id="myChart01"></canvas>
+                        </div>
+                      </div>
+
+                      <div class="row collapse-box-warehouse">
+                        <div class="col-3 warehouse-name">
+                          <p>
+                            Warehouse name :
+                          </p> 
+                        </div>
+                        <div class="col-9 fixed-height-chart">
+                          <div class="capacity-ft">2040 <span>ft</span> available of 5000 <span>ft</span></div>
+                          <canvas id="myChart02"></canvas>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -62,16 +88,42 @@
             </div>
           </article>
 
+
+
           <article>
             <h1>Company A</h1>
             <div class="companies-status">
                 <div>
-                  <h3>Warehouse: 2 <a  data-bs-toggle="collapse" href="#collapseCompany-02"><i class="fas fa-caret-down"></i></a></h3>
+                  <h3>Warehouse: 2 <a  data-bs-toggle="collapse" href="#collapseCompany-03"><i class="fas fa-caret-down"></i></a></h3>
                 </div>
                 <div class="">
-                  <div class="collapse capacity-status" id="collapseCompany-02">
-                    <div>
-                      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                  <div class="collapse capacity-status" id="collapseCompany-03">
+                    <div class="container collapse-box">
+                      
+                      <div class="row collapse-box-warehouse">
+                        <div class="col-3 warehouse-name">
+                          <p>
+                            Warehouse name :
+                          </p> 
+                        </div>
+                        <div class="col-9 fixed-height-chart">
+                          <div class="capacity-ft">2040 <span>ft</span> available of 5000 <span>ft</span></div>
+                          <canvas id="myChart03"></canvas>
+                        </div>
+                      </div>
+
+                      <div class="row collapse-box-warehouse">
+                        <div class="col-3 warehouse-name">
+                          <p>
+                            Warehouse name :
+                          </p> 
+                        </div>
+                        <div class="col-9 fixed-height-chart">
+                          <div class="capacity-ft">2040 <span>ft</span> available of 5000 <span>ft</span></div>
+                          <canvas id="myChart04"></canvas>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -80,8 +132,106 @@
                 </div>
             </div>
           </article>
+
+
+          <div class="text-center mt-5 mb-2">
+            <button class="btn btn-outline-success">More Company...</button>
+          </div>
             
         </section>
+
+        <section class="container contentBox">
+
+        </section>
+        
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // // === include 'setup' then 'config' above ===
+      
+      const labels = [
+        'Warehouse A'
+      ];
+      const data = {
+        labels: labels,
+        datasets: [
+          {
+          label: 'Used',
+          backgroundColor: 'rgb(255, 99, 132)',
+          // borderColor: 'rgb(255, 99, 132)',
+          data: [40],
+        },
+        {
+          label: 'Available',
+          backgroundColor: 'rgb(230, 230, 230)',
+          // borderColor: 'rgb(255, 99, 132)',
+          data: [60],
+        },
+      ]
+      };
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+              x: {
+                  display: false,
+                  stacked: true
+              },
+              y: {
+                  display: false,
+                  stacked: true
+              }
+          },
+          plugins: {
+            legend: {
+              // maxHeight: 100,
+              align: 'end',
+              display: false
+            },
+            tooltip: {
+              // enabled: false,
+              // boxHeight: 10,
+              callbacks: {
+                  label: function(context) {
+                    let myLabel = context['dataset']['label']+': ' + context['raw'] + '%';
+                    return myLabel;
+                  },
+
+                  title: function(context) {
+                    return;
+                  }
+              },
+              titleMarginBottom: 0
+            }
+          }
+
+        }
+      };
+
+      var myChart01 = new Chart(
+        document.getElementById('myChart01'),
+        config
+      );
+
+      var myChart02 = new Chart(
+        document.getElementById('myChart02'),
+        config
+      );
+
+      var myChart03 = new Chart(
+        document.getElementById('myChart03'),
+        config
+      );
+
+      var myChart04 = new Chart(
+        document.getElementById('myChart04'),
+        config
+      );
+
+    </script>
 </body>
 </html>
