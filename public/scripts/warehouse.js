@@ -1,3 +1,12 @@
+const warehouseOnchange = async (event) => {
+    console.log(event.target.value);
+    const warehouseId = event.target.value;
+
+    const warehouseData = await API.getWarehouse(warehouseId)
+    console.log("in Warehouse on click", warehouseData)
+}
+
+
 const productTableBdoy = (productArr) => {
     let allQueries = "";
 
@@ -48,7 +57,7 @@ const productHeader = (warehouseArr) => {
     return `
     <article class="m-3 row">
     <div class="col-8">
-      <h3>${warehouseArr[0].warehouseName}\'s Inventory</h3>
+      <h3 id="warehouse-header-title">${warehouseArr[0].warehouseName}\'s Inventory</h3>
     </div>
     <div class="col-4">
       <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example">
@@ -197,4 +206,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     if(childCompany[0].warehouse[0].product.length > 0){
         document.getElementById('display-product-table').innerHTML = productTable(childCompany[0].warehouse[0].product);
     }
+
+    const formSelector = document.getElementsByClassName('form-select');
+    formSelector[0].onchange = warehouseOnchange;
 })

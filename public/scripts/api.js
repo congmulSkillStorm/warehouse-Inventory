@@ -16,4 +16,13 @@ const API = {
             console.error(err);
         }
     },
+
+    async getWarehouse(warehouseId) {
+        try {
+            const res = await fetch(`/api/warehouse/${warehouseId}`);
+            return res.json();
+        }catch(err){
+            console.error(err);
+        }
+    },
 }
