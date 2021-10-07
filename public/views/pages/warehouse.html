@@ -17,8 +17,8 @@
     <title>Warehouse Inventory System</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg p-3 navbar-light bg-white nav-style">
+    <header id="navBar-gen">
+        <!-- <nav class="navbar navbar-expand-lg p-3 navbar-light bg-white nav-style">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
             <div class="d-flex justify-content-evenly">
@@ -32,7 +32,7 @@
               </ul>
             </div>
           </div>
-        </nav>
+        </nav> -->
         <div class="container contentBox">
               <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Product name..." aria-label="Search">
@@ -54,10 +54,13 @@
             </table>
       </section>
   </main>
-  <footer class="container">Footer</footer>
+
+  <div class="footerGen"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="scripts/api.js"></script>
+    <script src="scripts/components/nav.js"></script>
     <script src="scripts/warehouse.js"></script>
+    <script src="scripts/components/footer.js"></script>
 </body>
 </html>

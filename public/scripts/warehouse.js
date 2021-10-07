@@ -208,6 +208,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         displayGraph(warehouse);
     })
 
+    // NavBar Generator from scripts/components
+    navGenInit(childCompany[0]);
+
     // Display Product Header
     document.getElementById('display-warehouse-name').innerHTML = productHeader(childCompany[0].warehouse);
 

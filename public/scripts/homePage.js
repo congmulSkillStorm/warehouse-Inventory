@@ -144,10 +144,14 @@ function displayAllChildCompanies(childCompanies) {
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         const childCompanies = await API.getChildCompanies();
-        // console.log(childCompanies);
+        console.log(childCompanies);
         const allCompanyQuery = displayAllChildCompanies(childCompanies[0]);
         document.getElementById('display-child-company').innerHTML = allCompanyQuery;
 
+
+        // NavBar Generator from scripts/components
+        navGenInit(childCompanies[0]);
+        
         // Display Graph
         let allWarehouse = [];
         childCompanies[0].childCompany.forEach(company => {
