@@ -1,3 +1,7 @@
+function childCompanyOnClick(event) {
+  const childCompanyId = event.target.dataset.id;
+}
+
 const calculatePercentage = (currentCapacity, maxCapacity) => {
     let used = ((currentCapacity / maxCapacity) * 100).toFixed(2);
     let available = (100 - used).toFixed(2);
@@ -97,7 +101,7 @@ const childCompanyHTMLquery = (companyData) => {
     // console.log(companyData, 'in childCOmpanyHTMLquery func')
     return `
 <article>
-  <h1>${companyData.companyName}</h1>
+  <h1 class="childcompany-btn" data-id=${companyData._id}>${companyData.companyName}</h1>
   <div class="companies-status">
       <div>
         <h3>Warehouse: ${companyData.warehouse.length} <a  data-bs-toggle="collapse" href="#collapse-${companyData.companyName}"><i class="fas fa-caret-down"></i></a></h3>
@@ -127,6 +131,8 @@ function displayAllChildCompanies(childCompanies) {
     return allQueries;
 }
 
+
+
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         const childCompanies = await API.getChildCompanies();
@@ -146,7 +152,16 @@ window.addEventListener('DOMContentLoaded', async () => {
         allWarehouse.forEach(warehouse => {
             displayGraph(warehouse);
         })
+
+
+        const childCompanybtnEl = document.getElementsByClassName('childcompany-btn');
+        for(let element of childCompanybtnEl){
+          element.onclick = childCompanyOnClick;
+        }
+
     }catch(err) {
         console.error(err);
     }
 });
+
+
