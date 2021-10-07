@@ -26,15 +26,16 @@
     
     if(event.target.dataset.ischecked === 'false'){
       event.target.dataset.ischecked = true;
-      inputCompanyNameEl.value = "";
-      inputCompanyNameEl.disabled = false;
-      emailInputEl.style.display = "none";
-    }else{
-      // Display email input
+
       emailInputEl.style.display = "block";
       inputCompanyNameEl.value = "Skill Storm";
       inputCompanyNameEl.disabled = true;
-
+    }else{
       event.target.dataset.ischecked = false;
+
+      inputCompanyNameEl.value = "";
+      inputCompanyNameEl.disabled = false;
+      emailInputEl.style.display = "none";
+     
     }
   })
