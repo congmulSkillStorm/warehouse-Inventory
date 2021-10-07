@@ -21,3 +21,27 @@
 .loginForm-main > form {
     margin: 0 10px;
 }
+
+.login-bottom-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-bottom-area > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-bottom-area > div > input {
+    margin-right: 10px;
+}
+
+.login-bottom-area > div > input:hover {
+    cursor: pointer;
+}
+
+#inputEmail-input{
+    display: none;
+}

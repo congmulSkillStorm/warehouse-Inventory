@@ -25,6 +25,16 @@
                     Please enter a company name.
                   </div>
               </div>
+              <div class="row-md-4" id="inputEmail-input">
+                <label for="inputEmail" class="col-form-label">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" name="inputCompanyName" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please enter a email.
+                </div>
+            </div>
               <div class="row-md-4">
                   <label for="inputPassword" class="form-label">Password</label>
                   <input type="password" class="form-control" id="inputPassword" name="inputPassword" required>
@@ -35,9 +45,12 @@
                       Please enter your password.
                   </div>
               </div>
-              <div class="row-md-4">
+              <div class="row-md-4 login-bottom-area">
                 <button class="btn btn-primary" type="submit">Log in</button>
-                <input type="checkbox" />
+                <div>
+                  <input type="checkbox" name="parentCompany" data-isChecked="true" id="parentCompany-checkbox"/>
+                  <div>Parent Company</div>
+                </div>
               </div>
           </form>
         </div>

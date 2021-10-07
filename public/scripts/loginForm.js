@@ -18,3 +18,23 @@
         }, false)
       })
   })()
+
+
+  document.getElementById('parentCompany-checkbox').addEventListener('click', (event) =>{
+    let emailInputEl = document.getElementById('inputEmail-input');
+    let inputCompanyNameEl = document.getElementById('inputCompanyName');
+    
+    if(event.target.dataset.ischecked === 'false'){
+      event.target.dataset.ischecked = true;
+      inputCompanyNameEl.value = "";
+      inputCompanyNameEl.disabled = false;
+      emailInputEl.style.display = "none";
+    }else{
+      // Display email input
+      emailInputEl.style.display = "block";
+      inputCompanyNameEl.value = "Skill Storm";
+      inputCompanyNameEl.disabled = true;
+
+      event.target.dataset.ischecked = false;
+    }
+  })
