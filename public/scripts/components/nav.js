@@ -1,7 +1,7 @@
 const navQueries = (companyName, isMasterUser, isParentCompany) => {
     return`<nav class="navbar navbar-expand-lg p-3 navbar-light bg-white nav-style">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">${companyName.toUpperCase()}</a>
+      <a class="navbar-brand bg-dark text-white px-3 pt-3 pb-3" href="/">${companyName.toUpperCase()}</a>
       <div class="d-flex justify-content-evenly">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             ${isMasterUser ? 

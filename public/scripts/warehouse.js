@@ -159,7 +159,7 @@ function warehouseHTMLquery(warehouseBasicInfo){
         allqueries += `<div class="row collapse-box-warehouse">
         <div class="col-3 warehouse-name">
           <p>
-            ${warehouse.warehouseName.split("-")[1]} :
+            ${warehouse.warehouseName} :
           </p> 
         </div>
         <div class="col-9 fixed-height-chart">
@@ -177,12 +177,14 @@ function displayAllwarehouse(companyData) {
     <article>
   <h1 class="childcompany-btn" data-id=${companyData._id}>${companyData.companyName}</h1>
   <div class="companies-status">
-      <div>
+      <div class="px-2">
         <h3>Warehouse: ${companyData.warehouse.length} </h3>
       </div>
-      <div>
+      
+      <div class="mx-2">
         <h3>Location: ${companyData.location || 'Washington'}</h3>
       </div>
+      <div class="myHr"></div>
       <div class="">
         <div class="capacity-status">
           <div class="container collapse-box">
