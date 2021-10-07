@@ -21,13 +21,22 @@
 
 
   document.getElementById('parentCompany-checkbox').addEventListener('click', (event) =>{
+    const emailInputQuery = `<label for="inputEmail" class="col-form-label">Email address</label>
+    <input type="email" class="form-control" id="inputEmail" name="inputEmail" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+    <div class="invalid-feedback">
+      Please enter a email.
+    </div>`
+    
     let emailInputEl = document.getElementById('inputEmail-input');
     let inputCompanyNameEl = document.getElementById('inputCompanyName');
     
     if(event.target.dataset.ischecked === 'false'){
       event.target.dataset.ischecked = true;
 
-      emailInputEl.style.display = "block";
+      emailInputEl.innerHTML = emailInputQuery;
       inputCompanyNameEl.value = "Skill Storm";
       inputCompanyNameEl.disabled = true;
     }else{
@@ -35,7 +44,7 @@
 
       inputCompanyNameEl.value = "";
       inputCompanyNameEl.disabled = false;
-      emailInputEl.style.display = "none";
+      emailInputEl.innerHTML= "";
      
     }
   })

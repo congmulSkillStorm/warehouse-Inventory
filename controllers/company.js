@@ -1,4 +1,4 @@
-import { Company } from '../models/index.js';
+import { ParentCompany, Company } from '../models/index.js';
 
 export const createCompany = async (companyData) => {
     // TODO: Validation
@@ -6,10 +6,27 @@ export const createCompany = async (companyData) => {
     return await Company.create(companyData);
 }
 
-export const loginCompany = async ({ inputCompanyName, inputPassword, inputEmail=null}) => {
-    // console.log("loginCompany controller ", inputCompanyName, inputPassword, inputEmail);
-    const company = await Company.findOne({ companyName: inputCompanyName});
-    // console.log(company);
+export const loginCompany = async ({ inputCompanyName="skillstorm", inputPassword, inputEmail=null}) => {
+   console.log(inputCompanyName, inputEmail, inputPassword);
+    let company;
+    if(inputEmail){
+        console.log(inputEmail);
+        try {
+            company = await ParentCompany.findone({ company: 'skillstorm' });
+            console.log(company);
+        }catch(err) {
+            console.log(err);
+        }
+    }else{
+        try {
+            console.log(inputCompanyName);
+            company = await Company.findOne({ companyName: inputCompanyName});
+            console.log(company);
+        }catch(err) {
+            console.log(err)
+        }
+
+    }
 
     if(!company){
         throw { message: 'No company account found!'};
@@ -27,6 +44,6 @@ export const loginCompany = async ({ inputCompanyName, inputPassword, inputEmail
 
 export const getChildCompanies = async (companyId) => {
     // TODO: Validation - If it is parentCompany or not. 
-    const populateCompany = await Company.find({_id: companyId}).populate('childCompany');
+    const populateCompany = await ParentCompany.find({_id: companyId}).populate('childCompany');
     return populateCompany;
 }

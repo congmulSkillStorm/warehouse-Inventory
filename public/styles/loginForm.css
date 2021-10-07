@@ -41,7 +41,3 @@
 .login-bottom-area > div > input:hover {
     cursor: pointer;
 }
-
-#inputEmail-input{
-    display: none;
-}
