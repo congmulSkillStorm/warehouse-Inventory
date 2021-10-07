@@ -201,7 +201,7 @@ function displayAllwarehouse(companyData) {
 window.addEventListener('DOMContentLoaded', async () => {
     const childCompanyId = location.search.split("=")[1];
     const childCompany = await API.getChildCompany(childCompanyId);
-    console.log(childCompany[0]);
+    // console.log(childCompany[0]);
     const allWarehouseQuery = displayAllwarehouse(childCompany[0]);
     document.getElementById('display-warehouse').innerHTML = allWarehouseQuery;
 
@@ -223,4 +223,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     const formSelector = document.getElementsByClassName('form-select');
     formSelector[0].onchange = warehouseOnchange;
+
+    document.getElementById('newProductbtn').onclick = newProductOnclick;
 })
