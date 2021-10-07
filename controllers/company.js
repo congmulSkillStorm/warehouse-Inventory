@@ -38,8 +38,14 @@ export const loginCompany = async ({ inputCompanyName="skillstorm", inputPasswor
     return company;
 }
 
+// This is for parent company's users
 export const getChildCompanies = async (companyId) => {
-    // TODO: Validation - If it is parentCompany or not. 
+    // TODO: Validation - if the user is master or mannager. 
     const populateCompany = await ParentCompany.find({_id: companyId}).populate('childCompany');
     return populateCompany;
+}
+
+export const getChildCompnay = async(companyId) => {
+    const childcompany = await Company.find({_id: companyId}).populate('warehouse');
+    return childcompany;
 }

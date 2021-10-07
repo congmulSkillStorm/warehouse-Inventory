@@ -1,15 +1,3 @@
-async function childCompanyOnClick(event) {
-  // const childCompanyId = event.target.dataset.id;
-  // location.search = "?id=" + childCompanyId;
-  // document
-  //     .querySelector("a[href='/warehouse?']")
-  //     .setAttribute("href", `/warehouse?id=${childCompanyId}`);
-
-  // const childCompany = await API.getChildCompany(childCompanyId);
-  // console.log("childCompany", childCompany);
-  // document.getElementById('warehousetest').innerText = childCompany[0].companyName;
-}
-
 const calculatePercentage = (currentCapacity, maxCapacity) => {
     let used = ((currentCapacity / maxCapacity) * 100).toFixed(2);
     let available = (100 - used).toFixed(2);
@@ -85,14 +73,13 @@ const displayGraph = (warehouse) => {
       );
 }
 
-const warehouseHTMLquery = (warehouseData) => {
+function warehouseHTMLquery(warehouseBasicInfo){
     let allqueries = "";
-
-    warehouseData.forEach(warehouse => {
+    warehouseBasicInfo.forEach(warehouse => {
         allqueries += `<div class="row collapse-box-warehouse">
         <div class="col-3 warehouse-name">
           <p>
-            ${warehouse.warehouseName} :
+            ${warehouse.warehouseName.split("-")[1]} :
           </p> 
         </div>
         <div class="col-9 fixed-height-chart">
@@ -100,22 +87,24 @@ const warehouseHTMLquery = (warehouseData) => {
           <canvas id="chart-${warehouse._id}"></canvas>
         </div>
       </div>`
-    })
+    });
 
-  return allqueries;
+    return allqueries;
 }
 
-const childCompanyHTMLquery = (companyData) => {
-    // console.log(companyData, 'in childCOmpanyHTMLquery func')
-    return `
-<article>
-  <a href="/warehouse?id=${companyData._id}"> <h1 class="childcompany-btn" data-id=${companyData._id}>${companyData.companyName}</h1></a>
+function displayAllwarehouse(companyData) {
+    return`
+    <article>
+  <h1 class="childcompany-btn" data-id=${companyData._id}>${companyData.companyName}</h1>
   <div class="companies-status">
       <div>
-        <h3>Warehouse: ${companyData.warehouse.length} <a  data-bs-toggle="collapse" href="#collapse-${companyData.companyName}"><i class="fas fa-caret-down"></i></a></h3>
+        <h3>Warehouse: ${companyData.warehouse.length} </h3>
+      </div>
+      <div>
+        <h3>Location: ${companyData.location || 'Washington'}</h3>
       </div>
       <div class="">
-        <div class="collapse capacity-status" id="collapse-${companyData.companyName}">
+        <div class="capacity-status">
           <div class="container collapse-box">
             
             ${warehouseHTMLquery(companyData.warehouseBasicInfo)}
@@ -123,52 +112,19 @@ const childCompanyHTMLquery = (companyData) => {
           </div>
         </div>
       </div>
-      <div>
-        <h3>Location: ${companyData.location || 'Washington'}</h3>
-      </div>
   </div>
 </article>`
-} 
-
-function displayAllChildCompanies(childCompanies) {
-    // console.log(childCompanies);
-    let allQueries = "";
-    childCompanies.childCompany.forEach(company => {
-        allQueries += childCompanyHTMLquery(company);
-    })
-    return allQueries;
 }
 
-
-
 window.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const childCompanies = await API.getChildCompanies();
-        // console.log(childCompanies);
-        const allCompanyQuery = displayAllChildCompanies(childCompanies[0]);
-        document.getElementById('display-child-company').innerHTML = allCompanyQuery;
+    const childCompanyId = location.search.split("=")[1];
+    const childCompany = await API.getChildCompany(childCompanyId);
+    console.log(childCompany[0]);
+    const allWarehouseQuery = displayAllwarehouse(childCompany[0]);
+    document.getElementById('display-warehouse').innerHTML = allWarehouseQuery;
 
-        // Display Graph
-        let allWarehouse = [];
-        childCompanies[0].childCompany.forEach(company => {
-            if(company.warehouseBasicInfo.length > 0){
-                allWarehouse = [...allWarehouse, ...company.warehouseBasicInfo];
-            }
-        }) 
-
-        // console.log("allWarehouse", allWarehouse)
-        allWarehouse.forEach(warehouse => {
-            displayGraph(warehouse);
-        })
-
-        const childCompanybtnEl = document.getElementsByClassName('childcompany-btn');
-        for(let element of childCompanybtnEl){
-          element.onclick = childCompanyOnClick;
-        }
-
-    }catch(err) {
-        console.error(err);
-    }
-});
-
-
+    childCompany[0].warehouseBasicInfo.forEach(warehouse => {
+        console.log(warehouse)
+        displayGraph(warehouse);
+    })
+})
