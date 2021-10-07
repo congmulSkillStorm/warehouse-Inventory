@@ -4,6 +4,15 @@ const warehouseOnchange = async (event) => {
 
     const warehouseData = await API.getWarehouse(warehouseId)
     console.log("in Warehouse on click", warehouseData)
+
+    // Change warehouseName
+    document.getElementById('warehouse-header-title').innerText = warehouseData[0].warehouseName;
+
+    // Dispaly Product Table
+    if(warehouseData[0].product.length > 0){
+        document.getElementById('display-product-table').innerHTML = productTable(warehouseData[0].product);
+    }
+
 }
 
 
@@ -57,7 +66,7 @@ const productHeader = (warehouseArr) => {
     return `
     <article class="m-3 row">
     <div class="col-8">
-      <h3 id="warehouse-header-title">${warehouseArr[0].warehouseName}\'s Inventory</h3>
+      <h3><span id="warehouse-header-title">${warehouseArr[0].warehouseName}</span>\'s Inventory</h3>
     </div>
     <div class="col-4">
       <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example">
