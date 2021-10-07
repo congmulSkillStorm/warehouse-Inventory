@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
 // Login
 router.post('/login', async (req, res) => {
     try {
-        console.log("In Login Company Routes", req.body);
+        // console.log("In Login Company Routes", req.body);
         const company = await loginCompany(req.body);
         
         req.session.save(() => {

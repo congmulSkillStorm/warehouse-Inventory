@@ -119,7 +119,7 @@ const childCompanyHTMLquery = (companyData) => {
 } 
 
 function displayAllChildCompanies(childCompanies) {
-    console.log(childCompanies);
+    // console.log(childCompanies);
     let allQueries = "";
     childCompanies.childCompany.forEach(company => {
         allQueries += childCompanyHTMLquery(company);
@@ -130,7 +130,7 @@ function displayAllChildCompanies(childCompanies) {
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         const childCompanies = await API.getChildCompanies();
-        console.log(childCompanies);
+        // console.log(childCompanies);
         const allCompanyQuery = displayAllChildCompanies(childCompanies[0]);
         document.getElementById('display-child-company').innerHTML = allCompanyQuery;
 
@@ -142,7 +142,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         }) 
 
-        console.log("allWarehouse", allWarehouse)
+        // console.log("allWarehouse", allWarehouse)
         allWarehouse.forEach(warehouse => {
             displayGraph(warehouse);
         })

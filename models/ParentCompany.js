@@ -11,12 +11,6 @@ const parentCompanySchema = new Schema({
     isParentCompany: { type: Boolean, default: true },
     location: String,
     childCompany: [ { type: Schema.Types.ObjectId, ref: 'Company' } ],
-    // warehouseBasicInfo: [ {
-    //     _id: String,
-    //     warehouseName: String,
-    //     maxCapacity: Number,
-    //     currentCapacity: Number
-    // }],
     createAt: { type: Date, default: Date.now }
 })
 
