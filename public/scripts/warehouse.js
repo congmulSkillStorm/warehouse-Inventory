@@ -48,7 +48,7 @@ const productHeader = (warehouseArr) => {
     return `
     <article class="m-3 row">
     <div class="col-8">
-      <h3>Warehouse name Inventory</h3>
+      <h3>${warehouseArr[0].warehouseName}\'s Inventory</h3>
     </div>
     <div class="col-4">
       <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example">
