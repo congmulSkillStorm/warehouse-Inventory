@@ -1,3 +1,65 @@
+const productTableBdoy = (productArr) => {
+    let allQueries = "";
+
+    productArr.forEach(product => {
+        allQueries += `<tr class="product-tbody-row align-middle">
+        <td class="table-check-box "> <input type="checkbox" /></td>
+        <td>${product.productName}</td>
+        <td class="table-center">${product.quantity}</td>
+        <td class="table-center">$${product.price || 30,000}</td>
+      </tr>`;
+    })
+
+    return allQueries;
+}
+
+const productTableHeader = () => {
+    return `<thead>
+    <tr class="thead-title">
+      <th scope="col"></th>
+      <th scope="col" class="col-8">Product</th>
+      <th class="table-center" scope="col">Stock</th>
+      <th class="table-center" scope="col">Price</th>
+    </tr>
+  </thead>`;
+}
+
+const productTable = (productArr) => {
+    return `
+    ${productTableHeader()}
+    <tbody>
+    ${productTableBdoy(productArr)}
+    </tbody>
+    `;
+
+}
+
+const createSelectOptions = (warehouseArr) =>{
+    let allQueries = "";
+
+    warehouseArr.forEach(warehouse => {
+        allQueries += `<option value=${warehouse._id}>${warehouse.warehouseName}</option>`;
+    })
+
+    return allQueries;
+}
+
+const productHeader = (warehouseArr) => {
+    return `
+    <article class="m-3 row">
+    <div class="col-8">
+      <h3>Warehouse name Inventory</h3>
+    </div>
+    <div class="col-4">
+      <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example">
+        <option selected>Choose warehouse</option>
+        ${createSelectOptions(warehouseArr)}
+      </select>
+    </div>
+ </article>
+    `
+}
+
 const calculatePercentage = (currentCapacity, maxCapacity) => {
     let used = ((currentCapacity / maxCapacity) * 100).toFixed(2);
     let available = (100 - used).toFixed(2);
@@ -124,7 +186,15 @@ window.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('display-warehouse').innerHTML = allWarehouseQuery;
 
     childCompany[0].warehouseBasicInfo.forEach(warehouse => {
-        console.log(warehouse)
+        // console.log(warehouse)
         displayGraph(warehouse);
     })
+
+    // Display Product Header
+    document.getElementById('display-warehouse-name').innerHTML = productHeader(childCompany[0].warehouse);
+
+    // Dispaly Product Table
+    if(childCompany[0].warehouse[0].product.length > 0){
+        document.getElementById('display-product-table').innerHTML = productTable(childCompany[0].warehouse[0].product);
+    }
 })
