@@ -21,7 +21,7 @@ const productTableBdoy = (productArr) => {
 
     productArr.forEach(product => {
         allQueries += `<tr class="product-tbody-row align-middle">
-        <td class="table-check-box "> <input type="checkbox" /></td>
+        <td class="table-check-box"> <input type="checkbox" data-id=${product._id}/></td>
         <td>${product.productName}</td>
         <td class="table-center">${product.quantity}</td>
         <td class="table-center">$${product.price || 30,000}</td>
