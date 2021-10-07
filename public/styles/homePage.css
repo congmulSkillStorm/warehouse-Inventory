@@ -12,6 +12,10 @@
     padding: 10px 25px;
 }
 
+.childcompany-btn{
+    font-size: 28px;
+}
+
 .childcompany-btn:hover{
     cursor: pointer;
 }
