@@ -52,13 +52,11 @@ router.get('/logout', (req, res) => {
 
 // Get Company populating Child Company
 router.get('/', async (req, res) => {
-    // const companyId = req.session.companyId;
-    // console.log("companyId", companyId);
     try {
         const companyId = req.session.companyId;
-        console.log("companyId", companyId);
+        // console.log("companyId", companyId);
         const response = await getChildCompanies(companyId);
-        console.log(response);
+        // console.log(response);
         res.status(200).json(response);
 
     }catch(err) {
