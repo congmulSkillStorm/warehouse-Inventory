@@ -26,9 +26,9 @@ const API = {
         }
     },
 
-    async createProduct(productData) {
+    async createProduct(productData, childCompanyId) {
         try{
-            const res = await fetch('/api/warehouse', {
+            const res = await fetch('/api/warehouse/' + childCompanyId, {
                 method: "PUT", 
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(productData)

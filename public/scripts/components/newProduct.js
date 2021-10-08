@@ -13,18 +13,39 @@ async function handleModalForm(event) {
     productData.quantity = inputQuantityEl.value.trim();
     productData.sqft = inputSqftEl.value.trim();
 
-    console.log(productData);
+    console.log("productData", productData);
+
+    const childCompanyId = location.search.split("=")[1];
+    console.log("childCompanyId", childCompanyId)
+    
+
     // Create new product & Update web page with new information.
     try{
-      const response = await API.createProduct(productData);
-      // console.log(response, "response After creating product");
+      const updatedWarehouseNchildCompany = await API.createProduct(productData, childCompanyId);
+      console.log(updatedWarehouseNchildCompany, "updatedWarehouseNchildCompany After creating product");
       // Update product table with new product
-      document.getElementById('display-product-table').innerHTML = productTable(response.product);
+      document.getElementById('display-product-table').innerHTML = productTable(updatedWarehouseNchildCompany.warehouseUpdated.product);
+      
+      const allWarehouseQuery = displayAllwarehouse(updatedWarehouseNchildCompany.childCompany[0]);
+      document.getElementById('display-warehouse').innerHTML = allWarehouseQuery;
+
+      updatedWarehouseNchildCompany.childCompany[0].warehouseBasicInfo.forEach(warehouse => {
+        // console.log(warehouse)
+        displayGraph(warehouse);
+      })
+
+        // Clear input on modal
+        intputWarehouseIdEl.value = "";
+        inputProductNameEl.value = "";
+        inputColorEl.value = "";
+        inputPriceEl.value = "";
+        inputQuantityEl.value = "";
+        inputSqftEl.value = "";
 
       closeModal();
 
     } catch(err) {
-      // console.log(err);
+      console.log(err);
       document.getElementById('maxCap-warning-onNewProduct-Modal').classList.remove('visually-hidden');
 
       setTimeout(() => {

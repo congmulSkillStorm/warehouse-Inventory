@@ -21,10 +21,12 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create Product in Warehouse
-router.put('/', async (req, res) => {
+router.put('/:childCompanyId', async (req, res) => {
     console.log(req.body, "Create Product in Warehouse");
+    console.log(req.params.childCompanyId, 'childCompanyId')
     try{
-        const response = await createProduct(req.body);
+        const response = await createProduct(req.body, req.params.childCompanyId);
+        console.log(response);
         res.status(200).json(response);
     }catch(err) {
         console.log(err, "err in Create product Route");
