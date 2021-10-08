@@ -25,4 +25,17 @@ const API = {
             console.error(err);
         }
     },
+
+    async createProduct(productData) {
+        try{
+            const res = await fetch('/api/warehouse', {
+                method: "PUT", 
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify(productData)
+            });
+            return res.json();
+        }catch(err) {
+            console.error(err);
+        }
+    }
 }
