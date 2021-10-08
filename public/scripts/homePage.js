@@ -1,5 +1,13 @@
-function childCompanyOnClick(event) {
-  const childCompanyId = event.target.dataset.id;
+async function childCompanyOnClick(event) {
+  // const childCompanyId = event.target.dataset.id;
+  // location.search = "?id=" + childCompanyId;
+  // document
+  //     .querySelector("a[href='/warehouse?']")
+  //     .setAttribute("href", `/warehouse?id=${childCompanyId}`);
+
+  // const childCompany = await API.getChildCompany(childCompanyId);
+  // console.log("childCompany", childCompany);
+  // document.getElementById('warehousetest').innerText = childCompany[0].companyName;
 }
 
 const calculatePercentage = (currentCapacity, maxCapacity) => {
@@ -101,7 +109,7 @@ const childCompanyHTMLquery = (companyData) => {
     // console.log(companyData, 'in childCOmpanyHTMLquery func')
     return `
 <article>
-  <h1 class="childcompany-btn" data-id=${companyData._id}>${companyData.companyName}</h1>
+  <a href="/warehouse?childCompanyId=${companyData._id}"> <h1 class="childcompany-btn" data-id=${companyData._id}>${companyData.companyName}</h1></a>
   <div class="companies-status">
       <div>
         <h3>Warehouse: ${companyData.warehouse.length} <a  data-bs-toggle="collapse" href="#collapse-${companyData.companyName}"><i class="fas fa-caret-down"></i></a></h3>
@@ -140,6 +148,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         const allCompanyQuery = displayAllChildCompanies(childCompanies[0]);
         document.getElementById('display-child-company').innerHTML = allCompanyQuery;
 
+
+        // NavBar Generator from scripts/components
+        navGenInit(childCompanies[0]);
+        
         // Display Graph
         let allWarehouse = [];
         childCompanies[0].childCompany.forEach(company => {
@@ -152,7 +164,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         allWarehouse.forEach(warehouse => {
             displayGraph(warehouse);
         })
-
 
         const childCompanybtnEl = document.getElementsByClassName('childcompany-btn');
         for(let element of childCompanybtnEl){

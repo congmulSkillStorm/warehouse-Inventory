@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createCompany, loginCompany, getChildCompanies } from '../../controllers/company.js';
+import { createCompany, loginCompany, getChildCompanies, getChildCompnay } from '../../controllers/company.js';
 
 const router = Router();
 
@@ -57,6 +57,21 @@ router.get('/', async (req, res) => {
         // console.log("companyId", companyId);
         const response = await getChildCompanies(companyId);
         // console.log(response);
+        res.status(200).json(response);
+
+    }catch(err) {
+        console.error(err)
+        res.status(500).json(err);
+    }
+})
+
+// Get One Child Company
+router.get('/:id', async (req, res) => {
+    try {
+        const companyId = req.params.id;
+        console.log("companyId", companyId);
+        const response = await getChildCompnay(companyId);
+        console.log(response);
         res.status(200).json(response);
 
     }catch(err) {

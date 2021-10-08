@@ -12,49 +12,49 @@
     padding: 10px 25px;
 }
 
+.childcompany-btn{
+    font-size: 28px;
+}
+
 .childcompany-btn:hover{
     cursor: pointer;
 }
 
-.collapse-box{
+/* .collapse-box{
     padding: 10px 30px 20px 30px;
-}
+} */
 
-.collapse-box-warehouse{
-    /* display: flex; */
+/* .collapse-box-warehouse{
     padding-bottom: 10px;
-    
-    /* height: 50px; */
-}
-.warehouse-name{
+} */
+/* .warehouse-name{
    display: flex;
    align-items: flex-end;
-}
-.warehouse-name > p {
+} */
+/* .warehouse-name > p {
     margin: 6px;
-}
-.collapse-box-warehouse > div {
+} */
+/* .collapse-box-warehouse > div {
     height: 45px;
-}
+} */
 
-.fixed-height-chart{
+/* .fixed-height-chart{
     padding: 10px 0px;
-    /* height: 45px; */
     width: 50%;
-}
+} */
 
-.capacity-ft{
+/* .capacity-ft{
     position: relative;
     font-size: 10px;
     margin-bottom: 1px;
     color: gray;
-}
-.capacity-ft > span{
+} */
+/* .capacity-ft > span{
     margin-right: 5px;
-}
-.capacity-ft > span::after{
+} */
+/* .capacity-ft > span::after{
     content: '2';
     font-size: 6px;
     position: absolute;
     top: 0;
-}
+} */
