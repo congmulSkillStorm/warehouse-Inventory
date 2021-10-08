@@ -14,8 +14,16 @@ async function handleModalForm(event) {
     productData.sqft = inputSqftEl.value.trim();
 
     console.log(productData);
+    // Create new product & Update web page with new information.
+    try{
+      const response = await API.createProduct(productData);
+      console.log(response, "response After creating product");
+      // Update product table with new product
+      document.getElementById('display-product-table').innerHTML = productTable(response.product);
+    } catch(err) {
 
-    await API.createProduct(productData);
+    }
+
 
     closeModal()
 }

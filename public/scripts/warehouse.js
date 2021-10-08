@@ -3,10 +3,12 @@ const warehouseOnchange = async (event) => {
     const warehouseId = event.target.value;
 
     const warehouseData = await API.getWarehouse(warehouseId)
-    // console.log("in Warehouse on click", warehouseData)
+    console.log("in Warehouse on click", warehouseData)
 
-    // Change warehouseName
+    // Change warehouseName & id in Dataset
     document.getElementById('warehouse-header-title').innerText = warehouseData[0].warehouseName;
+    document.getElementById('warehouse-header-address').innerText = warehouseData[0].address;
+    document.getElementById('display-warehouse-name').dataset.warehouseId = warehouseData[0]._id;
 
     // Dispaly Product Table
     if(warehouseData[0].product.length > 0){
@@ -21,7 +23,7 @@ const productTableBdoy = (productArr) => {
 
     productArr.forEach(product => {
         allQueries += `<tr class="product-tbody-row align-middle">
-        <td class="table-check-box"> <input type="checkbox" data-id=${product._id}/></td>
+        <td class="table-check-box"> <input type="checkbox" data-id=${product._id}></td>
         <td>${product.productName}</td>
         <td class="table-center">${product.quantity}</td>
         <td class="table-center">$${product.price || 30,000}</td>
@@ -66,7 +68,13 @@ const productHeader = (warehouseArr) => {
     return `
     <article class="m-3 row">
     <div class="col-8">
-      <h3><span id="warehouse-header-title">${warehouseArr[0].warehouseName}</span>\'s Inventory</h3>
+      <div class="row">
+        <h3><span id="warehouse-header-title">${warehouseArr[0].warehouseName}</span>\'s Inventory</h3>
+      </div>
+      <div class="row">  
+        <p><i class="fas fa-map-marker-alt"></i> <span id="warehouse-header-address"> ${warehouseArr[0].address}</span></p>
+      </div>
+      
     </div>
     <div class="col-4">
       <select class="form-select form-select-sm mb-3" id="selector-warehouse-onwarehousepage" aria-label=".form-select-lg example">
@@ -182,7 +190,7 @@ function displayAllwarehouse(companyData) {
       </div>
       
       <div class="mx-2">
-        <h3>Location: ${companyData.location || 'Washington'}</h3>
+        <h3>Location: ${companyData.location || 'USA'}</h3>
       </div>
       <div class="myHr"></div>
       <div class="">
@@ -215,6 +223,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     // Display Product Header
     document.getElementById('display-warehouse-name').innerHTML = productHeader(childCompany[0].warehouse);
+    // Set data-id for first warehouse.
+    document.getElementById('display-warehouse-name').dataset.warehouseId = childCompany[0].warehouse[0]._id;
 
     // Dispaly Product Table
     if(childCompany[0].warehouse[0].product.length > 0){
