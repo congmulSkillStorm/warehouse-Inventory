@@ -17,15 +17,22 @@ async function handleModalForm(event) {
     // Create new product & Update web page with new information.
     try{
       const response = await API.createProduct(productData);
-      console.log(response, "response After creating product");
+      // console.log(response, "response After creating product");
       // Update product table with new product
       document.getElementById('display-product-table').innerHTML = productTable(response.product);
-    } catch(err) {
 
+      closeModal();
+
+    } catch(err) {
+      // console.log(err);
+      document.getElementById('maxCap-warning-onNewProduct-Modal').classList.remove('visually-hidden');
+
+      setTimeout(() => {
+        document.getElementById('maxCap-warning-onNewProduct-Modal').classList.add('visually-hidden');
+      }, 3500)
     }
 
 
-    closeModal()
 }
 
 

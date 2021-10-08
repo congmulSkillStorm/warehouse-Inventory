@@ -16,6 +16,9 @@ export const createProduct = async(productData) => {
 
     let addedCurrentCapacity = warehouse[0].currentCapacity + productData.sqft * productData.quantity;
     
+    if(addedCurrentCapacity > warehouse[0].maxCapacity){
+        throw new RangeError(`Can not be added greater than ${warehouse[0].maxCapacity} sqft.`)
+    }
     console.log("addedCurrentCapacity", addedCurrentCapacity);
 
     // const warehouse = await Warehouse.findByIdAndUpdate(

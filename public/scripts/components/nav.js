@@ -21,6 +21,9 @@ const modalQuery = (warehouseArr) => {
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
+            <div class="alert alert-danger text-center visually-hidden" id="maxCap-warning-onNewProduct-Modal" role="alert">
+                Cannot be added greater than Max Capacity
+            </div>
             <div class="modal-body">
 
            

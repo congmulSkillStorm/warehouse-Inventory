@@ -27,6 +27,7 @@ router.put('/', async (req, res) => {
         const response = await createProduct(req.body);
         res.status(200).json(response);
     }catch(err) {
+        console.log(err, "err in Create product Route");
         res.status(500).json(err);
     }
 })

@@ -32,10 +32,15 @@ const API = {
                 method: "PUT", 
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(productData)
-            });
-            return res.json();
+                });
+            if(res.ok){
+                return res.json();
+            }else{
+                // console.log(res);
+                return Promise.reject({message: 'Can not be added greater than Max Capapacity'})
+            }
         }catch(err) {
-            console.error(err);
+            throw err;
         }
     }
 }
