@@ -144,7 +144,7 @@ function displayAllChildCompanies(childCompanies) {
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         const childCompanies = await API.getChildCompanies();
-        console.log(childCompanies);
+        // console.log(childCompanies);
         const allCompanyQuery = displayAllChildCompanies(childCompanies[0]);
         document.getElementById('display-child-company').innerHTML = allCompanyQuery;
 

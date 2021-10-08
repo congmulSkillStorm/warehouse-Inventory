@@ -121,14 +121,14 @@ const navQueries = (companyName, isMasterUser, isParentCompany, warehouseIDs) =>
 }
 
 const navGenInit = ({ companyName, isMasterUser=false, isParentCompany=false, warehouse=[] }) => {
-    console.log("in navGen", companyName, isMasterUser, isParentCompany, warehouse);
+    // console.log("in navGen", companyName, isMasterUser, isParentCompany, warehouse);
 
     let warehouseIDs = [];
     warehouse.forEach(data => {
       warehouseIDs.push(data._id);
     })
 
-    console.log(warehouseIDs.join(","));
+    // console.log(warehouseIDs.join(","));
 
     document.getElementById('navBar-gen').innerHTML = navQueries(companyName, isMasterUser, isParentCompany, warehouseIDs.join(",")) + modalQuery(warehouse);
 }

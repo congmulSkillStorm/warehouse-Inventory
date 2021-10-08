@@ -1,9 +1,9 @@
 const warehouseOnchange = async (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     const warehouseId = event.target.value;
 
     const warehouseData = await API.getWarehouse(warehouseId)
-    console.log("in Warehouse on click", warehouseData)
+    // console.log("in Warehouse on click", warehouseData)
 
     // Change warehouseName
     document.getElementById('warehouse-header-title').innerText = warehouseData[0].warehouseName;
@@ -69,7 +69,7 @@ const productHeader = (warehouseArr) => {
       <h3><span id="warehouse-header-title">${warehouseArr[0].warehouseName}</span>\'s Inventory</h3>
     </div>
     <div class="col-4">
-      <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example">
+      <select class="form-select form-select-sm mb-3" id="selector-warehouse-onwarehousepage" aria-label=".form-select-lg example">
         <option selected>Choose warehouse</option>
         ${createSelectOptions(warehouseArr)}
       </select>
@@ -221,8 +221,10 @@ window.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('display-product-table').innerHTML = productTable(childCompany[0].warehouse[0].product);
     }
 
-    const formSelector = document.getElementsByClassName('form-select');
-    formSelector[0].onchange = warehouseOnchange;
+    // To display Warehouse's Product depending on Selected option.
+    const formSelector = document.getElementById('selector-warehouse-onwarehousepage');
+    formSelector.onchange = warehouseOnchange;
 
+    // To create new product on a warehouse.
     document.getElementById('newProductbtn').onclick = newProductOnclick;
 })
