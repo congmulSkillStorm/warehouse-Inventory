@@ -109,7 +109,7 @@ const childCompanyHTMLquery = (companyData) => {
     // console.log(companyData, 'in childCOmpanyHTMLquery func')
     return `
 <article>
-  <a href="/warehouse?id=${companyData._id}"> <h1 class="childcompany-btn" data-id=${companyData._id}>${companyData.companyName}</h1></a>
+  <a href="/warehouse?childCompanyId=${companyData._id}"> <h1 class="childcompany-btn" data-id=${companyData._id}>${companyData.companyName}</h1></a>
   <div class="companies-status">
       <div>
         <h3>Warehouse: ${companyData.warehouse.length} <a  data-bs-toggle="collapse" href="#collapse-${companyData.companyName}"><i class="fas fa-caret-down"></i></a></h3>
