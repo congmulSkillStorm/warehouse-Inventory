@@ -1,46 +1,51 @@
-let checkedItem = [];
+let checkedItemsArr = [];
 function allCheckproduct() {
     for(let i = 0; i < document.getElementsByClassName('select-product-delete').length; i++){
         if(!document.getElementsByClassName('select-product-delete')[i].checked){
             document.getElementsByClassName('select-product-delete')[i].checked = true;
-            checkedItem.push(document.getElementsByClassName('select-product-delete')[i].dataset.id)
+            checkedItemsArr.push(document.getElementsByClassName('select-product-delete')[i].dataset.id)
         }
     }
 
-    // console.log(checkedItem);
+    // console.log(checkedItemsArr);
 }
 function allUncheckproduct(){
-    checkedItem = [];
+    checkedItemsArr = [];
     for(let i = 0; i < document.getElementsByClassName('select-product-delete').length; i++){
         document.getElementsByClassName('select-product-delete')[i].checked = false;
     }
     document.getElementById('bar-menu-inventory').style.width = '0';
     document.getElementById('bar-menu-inventory').style.opacity = '0';
 
-    // console.log(checkedItem);
+    // console.log(checkedItemsArr);
 } 
 
-function productDeleteBtn(){
-    console.log(checkedItem);
+async function productDeleteBtn(){
+    console.log(checkedItemsArr);
+    const childCompanyId = location.search.split("=")[1];
+    const warehouseId = document.getElementById('display-warehouse-name').dataset.warehouseId;
+    console.log(childCompanyId, warehouseId);
     //  Call Delete Product API
+    const response = await API.deleteProduct(checkedItemsArr, warehouseId, childCompanyId);
+    console.log(response);
 }
 
 function clickHandle(e) {
     if(e.target.checked){
-        checkedItem.push(e.target.dataset.id);
+        checkedItemsArr.push(e.target.dataset.id);
     }else{
-        checkedItem = checkedItem.filter(id => id != e.target.dataset.id);
+        checkedItemsArr = checkedItemsArr.filter(id => id != e.target.dataset.id);
     }
 
-    if(checkedItem.length > 0){
+    if(checkedItemsArr.length > 0){
         document.getElementById('bar-menu-inventory').style.width = '100%';
         document.getElementById('bar-menu-inventory').style.opacity = '100%';
-        document.getElementById('amount-product-selected').textContent = checkedItem.length;
+        document.getElementById('amount-product-selected').textContent = checkedItemsArr.length;
     }else{
         document.getElementById('bar-menu-inventory').style.width = '0';
         document.getElementById('bar-menu-inventory').style.opacity = '0';
     }
-    console.log(checkedItem);
+    console.log(checkedItemsArr);
 }
 
 function initWatchSelect() {
