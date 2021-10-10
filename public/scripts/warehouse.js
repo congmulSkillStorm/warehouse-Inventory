@@ -17,6 +17,8 @@ const warehouseOnchange = async (event) => {
     // Watch if products are checked to delete on product list // scripts/components/productDeleteBar.js
     initWatchSelect();
 
+    // To Update product on a warehouse.
+    initUpdateModal();
 }
 
 
@@ -24,11 +26,11 @@ const productTableBdoy = (productArr) => {
     let allQueries = "";
 
     productArr.forEach(product => {
-        allQueries += `<tr class="product-tbody-row align-middle">
+        allQueries += `<tr class="product-tbody-row align-middle" data-product-id=${product._id}>
         <td class="table-check-box"> <input type="checkbox" data-id=${product._id} class="select-product-delete"></td>
-        <td>${product.productName}</td>
-        <td class="table-center">${product.quantity}</td>
-        <td class="table-center">$${product.price || 30,000}</td>
+        <td class="open-update-modal">${product.productName}</td>
+        <td class="table-center open-update-modal">${product.quantity}</td>
+        <td class="table-center open-update-modal">$${product.price || 30,000}</td>
       </tr>`;
     })
 
@@ -240,6 +242,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     // To create new product on a warehouse.
     document.getElementById('newProductbtn').onclick = newProductOnclick;
 
+    // To Update product on a warehouse.
+    initUpdateModal();
+
+    
     // Watch if products are checked to delete on product list // scripts/components/productDeleteBar.js
     initWatchSelect();
+
+
 })

@@ -58,6 +58,40 @@ export const createProduct = async(productData, childCompanyId) => {
     // return 1;
 }
 
+
+export const updateProduct = async (updatedData) => {
+    console.log(updatedData," updatedData in Update Product Controller")
+
+    await Warehouse.updateOne({ 'product._id': updatedData.productId},
+                        { 'product': updatedData.productData}
+    )
+
+    // Update Warehouse & Company's warehouseBasicInfo
+    const oldwarehouse = await Warehouse.find({'_id': updatedData.warehouseId});
+
+    let currentCapcity = 0;
+    console.log("===============Calculate Current Cap=======================")
+    for(let i = 0; i < oldwarehouse[0].product.length; i++){
+        currentCapcity += oldwarehouse[0].product[i].sqft * oldwarehouse[0].product[i].quantity;
+        console.log(oldwarehouse[0].product[i].sqft, " * ", oldwarehouse[0].product[i].quantity);
+    }
+    console.log("currentCapcity", currentCapcity);
+
+    const warehouseUpdated = await Warehouse.findByIdAndUpdate(
+        {_id: updatedData.warehouseId},
+        { currentCapacity: currentCapcity },
+        { new: true }
+        );
+
+    const responseChild = await Company.update({'warehouseBasicInfo._id': updatedData.warehouseId}, 
+        {'warehouseBasicInfo.$.currentCapacity': currentCapcity},
+        { new: true });    
+    
+    const childCompanyUpdated = await Company.find({_id: updatedData.childCompanyId});
+
+    return {childCompanyUpdated, warehouseUpdated};   
+}
+
 export const deleteProduct = async({productIdarr, warehouseId, childCompanyId}) => {
     console.log(productIdarr, warehouseId, childCompanyId, "productID in deleteProduct controller");
     for(let i = 0; i < productIdarr.length; i++){

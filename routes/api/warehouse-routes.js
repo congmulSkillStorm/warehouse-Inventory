@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getWarehouse, createProduct, deleteProduct } from '../../controllers/warehouse.js';
+import { getWarehouse, createProduct, updateProduct, deleteProduct } from '../../controllers/warehouse.js';
 
 const router = Router();
 
@@ -33,6 +33,19 @@ router.put('/:childCompanyId', async (req, res) => {
         res.status(500).json(err);
     }
 })
+
+// Update Product by ID
+router.put('/update/product/', async(req, res) => {
+    console.log(req.body, "req.body in update product route")
+    try{
+        const response = await updateProduct(req.body);
+        console.log(response);
+        res.status(200).json(response);
+    }catch(err) {
+        res.status(500).json(err);
+    }
+})
+
 
 // Delete Product by ID
 router.put('/delete/product/', async(req, res) => {
