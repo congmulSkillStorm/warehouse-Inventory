@@ -62,6 +62,22 @@ export const createProduct = async(productData, childCompanyId) => {
 export const updateProduct = async (updatedData) => {
     console.log(updatedData," updatedData in Update Product Controller")
 
+    // Check if the updated sqft * quantity is greater than MaxCap
+    const warehouse = await Warehouse.find({_id: updatedData.warehouseId});
+    const productDataBeforeUpdpate = await Warehouse.find({ 'product._id': updatedData.productId})
+    console.log("productDataBeforeUpdpate", productDataBeforeUpdpate[0].product)
+    const totalSqftOfProductBeforeUpdated = productDataBeforeUpdpate[0].product.sqft * productDataBeforeUpdpate[0].product.quantity;
+    let addedCurrentCapacity = (warehouse[0].currentCapacity - totalSqftOfProductBeforeUpdated)+ updatedData.productData.sqft * updatedData.productData.quantity;
+    console.log("addedCurrentCapacity", addedCurrentCapacity);
+    console.log("addedCurrentCapacity", typeof addedCurrentCapacity);
+    console.log("warehouse[0].maxCapacity", warehouse[0].maxCapacity);
+    console.log("warehouse[0].maxCapacity",typeof warehouse[0].maxCapacity);
+
+    if(addedCurrentCapacity > warehouse[0].maxCapacity){
+        throw new RangeError(`Can not be added greater than ${warehouse[0].maxCapacity} sqft.`)
+    }
+
+
     await Warehouse.updateOne({ 'product._id': updatedData.productId},
                         { 'product': updatedData.productData}
     )

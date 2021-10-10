@@ -51,9 +51,14 @@ async function updateOnclick(event) {
     
         // To Update product on a warehouse.
         initUpdateModal();
-        
+
     }catch(err) {
-        console.log(err);
+              console.log(err);
+      document.getElementById('maxCap-warning-onUpdateProduct-Modal').classList.remove('visually-hidden');
+
+      setTimeout(() => {
+        document.getElementById('maxCap-warning-onUpdateProduct-Modal').classList.add('visually-hidden');
+      }, 3500)
     }
 }
 
