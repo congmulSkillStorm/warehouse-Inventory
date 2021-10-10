@@ -74,11 +74,13 @@ function openUpdateModal(event) {
         }
     }
 
-    console.log(oldValue);
+    // console.log(oldValue);
+    // console.log(oldValue[2].substr(1, oldValue[2].length));
+    // console.log(parseFloat(oldValue[2].substr(1, oldValue[2].length).split(",").join("")));
     productNameTitleEl.innerText = oldValue[0];
     inputUpdateProductNameEl.value = oldValue[0];
     inputUpdateColorEl.value = oldValue[1];
-    inputUpdatePriceEl.value = oldValue[2];
+    inputUpdatePriceEl.value = parseInt(oldValue[2].substr(1, oldValue[2].length).split(",").join(""));
     inputUpdateQuantityEl.value = oldValue[3];
     inputUpdateSqft.value = oldValue[4];
 
