@@ -29,9 +29,11 @@ async function productDeleteBtn(){
     const response = await API.deleteProduct(checkedItemsArr, warehouseId, childCompanyId);
     console.log(response);
 
-    // Reset CheckedItem Array
+    // Reset CheckedItem Array and Invisible delete bar
     checkedItemsArr = [];
-    
+    document.getElementById('bar-menu-inventory').style.width = '0';
+    document.getElementById('bar-menu-inventory').style.opacity = '0';
+
      // Update product table with new product
      document.getElementById('display-product-table').innerHTML = productTable(response.warehouseUpdated.product);
       
@@ -42,6 +44,9 @@ async function productDeleteBtn(){
        // console.log(warehouse)
        displayGraph(warehouse);
      })
+
+     // Watch if Product lists are selected or not.
+     initWatchSelect();
 
 }
 
