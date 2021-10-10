@@ -44,6 +44,24 @@ const API = {
         }
     },
 
+    async updateProduct(productData) {
+        try{
+            const res = await fetch('/api/warehouse/update/product/', {
+                method: "PUT", 
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify(productData)
+                });
+            if(res.ok){
+                return res.json();
+            }else{
+                // console.log(res);
+                return Promise.reject({message: 'Something problem.'})
+            }
+        }catch(err) {
+            throw err;
+        }
+    },
+
     async deleteProduct(productIdarr, warehouseId, childCompanyId) {
         console.log(productIdarr)
         try{
