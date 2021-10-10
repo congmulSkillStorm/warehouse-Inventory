@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { Company, Warehouse } from '../models/index.js';
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/warehouse-inventory', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/warehouse-inventory-v2', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -9,12 +9,13 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/warehouse-inven
 async function runSeed() {
     try{
         let allCompanieswithWarehouse = await Company.find({}).populate('warehouse');
-
+        console.log(allCompanieswithWarehouse);
         allCompanieswithWarehouse.forEach(company => {
             company.warehouse.forEach(async (ware) => {
                 console.log(ware._id);
                 console.log(ware.currentCapacity);
-                await Company.update({'warehouseBasicInfo._id': ware._id}, {'warehouseBasicInfo.$.currentCapacity': ware.currentCapacity});
+                // await Company.updateOne({'warehouseBasicInfo._id': ware._id}, {'warehouseBasicInfo.$.currentCapacity': ware.currentCapacity});
+                await Company.update({'warehouseBasicInfo._id': ware._id}, {'warehouseBasicInfo.$.currentCapacity': 10});
             })
         })
         mongoose.connection.close();

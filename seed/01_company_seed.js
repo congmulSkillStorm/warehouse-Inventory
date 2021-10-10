@@ -1,79 +1,13 @@
 import mongoose from 'mongoose';
 import { Company, ParentCompany } from '../models/index.js';
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/warehouse-inventory', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/warehouse-inventory-v2', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-const companiesSeed = [
-    {
-        companyName: "skillstorm",
-        password: "123",
-        email: "jjung@skillstorm.com",
-        isMasterUser: true,
-        isParentCompany: true,
-        location: 'Florida'
-    },
-    {
-        companyName: "childcompanyA",
-        password: "123",
-        email: "jjung@childCompanyA.com",
-        isMasterUser: false,
-        isParentCompany: false,
-        location: 'Washinton'
-    },
-    {
-        companyName: "childcompanyB",
-        password: "123",
-        email: "jjung@childCompanyB.com",
-        iBMasterUser: false,
-        isParentCompany: false,
-        location: 'Kansas'
-    },
-    {
-        companyName: "childcompanyC",
-        password: "123",
-        email: "jjung@childCompanyC.com",
-        isMasterUser: false,
-        isParentCompany: false,
-        location: 'Texas'
-    },
-    {
-        companyName: "childcompanyD",
-        password: "123",
-        email: "jjung@childCompanyD.com",
-        isMasterUser: false,
-        isParentCompany: false,
-        location: 'Arizona'
-    },
-    {
-        companyName: "childcompanyE",
-        password: "123",
-        email: "jjung@childCompanyE.com",
-        isMasterUser: false,
-        isParentCompany: false,
-        location: 'Ohio'
-    },
-    {
-        companyName: "childcompanyF",
-        password: "123",
-        email: "jjung@childCompanyF.com",
-        isMasterUser: false,
-        isParentCompany: false,
-        location: 'Idaho'
-    },
-    {
-        companyName: "childcompanyG",
-        password: "123",
-        email: "jjung@childCompanyG.com",
-        isMasterUser: false,
-        isParentCompany: false,
-        location: 'Georgia'
-    }
-]
-
 const companiesSeedv2 = [
+    {"companyName":"ChildCom","password":"123","email":"childCom@childCom.com","location":"WA"},
     {"companyName":"Zoonder","password":"DCISKGM","email":"sfleetham0@wix.com","location":"Louisiana"},
     {"companyName":"Youtags","password":"OtrslIl","email":"ablondin1@wordpress.com","location":"Ohio"},
     {"companyName":"Meeveo","password":"QbftGpt6eZV","email":"jbakey2@craigslist.org","location":"Virginia"},
@@ -84,6 +18,7 @@ const companiesSeedv2 = [
     {"companyName":"Buzzster","password":"qc8bd3sDEODC","email":"kludwikiewicz7@webnode.com","location":"Michigan"},
     {"companyName":"Skiptube","password":"sjM9JpY","email":"acavanaugh8@rakuten.co.jp","location":"Washington"},
     {"companyName":"Fivebridge","password":"v4gXrgh3ll","email":"nnannoni9@accuweather.com","location":"California"}]
+
 async function runSeed() {
     try{
         let parentCompanies = await ParentCompany.find();
