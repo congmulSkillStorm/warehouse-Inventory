@@ -24,10 +24,10 @@ async function updateOnclick(event) {
     updatedData.productData.quantity = inputUpdateQuantityEl.value.trim();
     updatedData.productData.sqft = inputUpdateSqft.value.trim();
 
-    console.log("updatedData", updatedData);
+    // console.log("updatedData", updatedData);
     try{
         const updatedWarehouseNchildCompany = await API.updateProduct(updatedData);
-        console.log(updatedWarehouseNchildCompany);
+        // console.log(updatedWarehouseNchildCompany);
 
         // Update product table with new product
       document.getElementById('display-product-table').innerHTML = productTable(updatedWarehouseNchildCompany.warehouseUpdated.product);
@@ -64,7 +64,7 @@ async function updateOnclick(event) {
 
 function openUpdateModal(event) {
     productId = event.target.parentNode.dataset.productId;
-    console.log(event.target.parentNode.dataset.productId)
+    // console.log(event.target.parentNode.dataset.productId)
     
     let oldValue = [];
     for(let node of event.target.parentNode.childNodes){
@@ -102,7 +102,7 @@ function closeUpdateModal() {
 
 function initUpdateModal() {
     const productListTrEl = document.getElementsByClassName('open-update-modal');
-    console.log(productListTrEl)
+    // console.log(productListTrEl)
     for(let i = 0; i < productListTrEl.length; i++){
         productListTrEl[i].addEventListener("click", openUpdateModal);
     }

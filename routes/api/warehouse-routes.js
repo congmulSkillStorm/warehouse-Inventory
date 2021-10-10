@@ -22,11 +22,11 @@ router.get('/:id', async (req, res) => {
 
 // Create Product in Warehouse
 router.put('/:childCompanyId', async (req, res) => {
-    console.log(req.body, "Create Product in Warehouse Route");
-    console.log(req.params.childCompanyId, 'childCompanyId')
+    // console.log(req.body, "Create Product in Warehouse Route");
+    // console.log(req.params.childCompanyId, 'childCompanyId')
     try{
         const response = await createProduct(req.body, req.params.childCompanyId);
-        console.log(response);
+        // console.log(response);
         res.status(200).json(response);
     }catch(err) {
         console.log(err, "err in Create product Route");
@@ -36,7 +36,7 @@ router.put('/:childCompanyId', async (req, res) => {
 
 // Update Product by ID
 router.put('/update/product/', async(req, res) => {
-    console.log(req.body, "req.body in update product route")
+    // console.log(req.body, "req.body in update product route")
     try{
         const response = await updateProduct(req.body);
         console.log(response);
@@ -49,10 +49,10 @@ router.put('/update/product/', async(req, res) => {
 
 // Delete Product by ID
 router.put('/delete/product/', async(req, res) => {
-    console.log(req.body, "req.body in delete route")
+    // console.log(req.body, "req.body in delete route")
     try{
         const response = await deleteProduct(req.body);
-        console.log(response);
+        // console.log(response);
         res.status(200).json(response);
     }catch(err) {
         res.status(500).json(err);

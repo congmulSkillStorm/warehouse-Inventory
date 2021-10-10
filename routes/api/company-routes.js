@@ -71,7 +71,7 @@ router.get('/:id', async (req, res) => {
         const companyId = req.params.id;
         console.log("companyId", companyId);
         const response = await getChildCompnay(companyId);
-        console.log(response);
+        // console.log(response);
         res.status(200).json(response);
 
     }catch(err) {
