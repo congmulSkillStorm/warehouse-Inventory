@@ -47,6 +47,9 @@ async function handleModalForm(event) {
       // To Update product on a warehouse.
       initUpdateModal();
 
+      // To Update product on a warehouse.
+      initUpdateModal();
+
     } catch(err) {
       console.log(err);
       document.getElementById('maxCap-warning-onNewProduct-Modal').classList.remove('visually-hidden');

@@ -26,11 +26,17 @@ const productTableBdoy = (productArr) => {
     let allQueries = "";
 
     productArr.forEach(product => {
+      console.log(product.color);
+      console.log(product.price);
+      console.log(product.quantity);
+      console.log(product.sqft);
         allQueries += `<tr class="product-tbody-row align-middle" data-product-id=${product._id}>
         <td class="table-check-box"> <input type="checkbox" data-id=${product._id} class="select-product-delete"></td>
         <td class="open-update-modal">${product.productName}</td>
+        <td class="table-center open-update-modal">${product.color}</td>
+        <td class="table-center open-update-modal">$${NumberComma(product.price)}</td>
         <td class="table-center open-update-modal">${product.quantity}</td>
-        <td class="table-center open-update-modal">$${product.price || 30,000}</td>
+        <td class="table-center open-update-modal">${product.sqft}</td>
       </tr>`;
     })
 
@@ -42,8 +48,10 @@ const productTableHeader = () => {
     <tr class="thead-title">
       <th scope="col"></th>
       <th scope="col" class="col-8">Product</th>
-      <th class="table-center" scope="col">Stock</th>
+      <th class="table-center" scope="col">Color</th>
       <th class="table-center" scope="col">Price</th>
+      <th class="table-center" scope="col">Quantity</th>
+      <th class="table-center" scope="col">Sqft</th>
     </tr>
   </thead>`;
 }
