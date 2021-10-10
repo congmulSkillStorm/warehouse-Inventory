@@ -57,3 +57,39 @@ export const createProduct = async(productData, childCompanyId) => {
 
     // return 1;
 }
+
+export const deleteProduct = async({productIdarr, warehouseId, childCompanyId}) => {
+    console.log(productIdarr, warehouseId, childCompanyId, "productID in deleteProduct controller");
+    for(let i = 0; i < productIdarr.length; i++){
+        let deleteProduct = await Warehouse.updateOne({'_id': warehouseId}, 
+        { $pull: { product: { _id: productIdarr[i]}} }
+        );
+    }
+
+    // Update Warehouse & Company's warehouseBasicInfo
+    const oldwarehouse = await Warehouse.find({'_id': warehouseId});
+    // const oldcompany = await Company.find({'_id': childCompanyId});
+
+    let currentCapcity = 0;
+    console.log("===============Calculate Current Cap=======================")
+    for(let i = 0; i < oldwarehouse[0].product.length; i++){
+        currentCapcity += oldwarehouse[0].product[i].sqft * oldwarehouse[0].product[i].quantity;
+        console.log(oldwarehouse[0].product[i].sqft, " * ", oldwarehouse[0].product[i].quantity);
+    }
+    console.log("currentCapcity", currentCapcity);
+
+    const warehouseUpdated = await Warehouse.findByIdAndUpdate(
+        {_id: warehouseId},
+        { currentCapacity: currentCapcity },
+        { new: true }
+        );
+
+    const responseChild = await Company.update({'warehouseBasicInfo._id': warehouseId}, 
+        {'warehouseBasicInfo.$.currentCapacity': currentCapcity},
+        { new: true });    
+    
+    const childCompanyUpdated = await Company.find({_id: childCompanyId});
+
+    return {childCompanyUpdated, warehouseUpdated};        
+
+}

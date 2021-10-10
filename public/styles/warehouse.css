@@ -53,3 +53,54 @@
 .table-center {
     text-align: center;
 }
+
+
+/* Delete product bar style on bottom */
+#bar-menu-inventory{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 0;
+    height: 60px;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out;
+    background-color: rgba(49, 52, 61, 1);
+
+    color: white;
+
+    font-size: 0.9rem;
+}
+#bar-menu-inventory > button{
+        color: white;
+        background-color: black;
+        padding: 10px;
+        border: 0;
+        font-size: 0.9rem;
+}
+
+#bar-menu-inventory > button:hover{
+    cursor: pointer;
+    background-color: #adb5bd;
+}
+
+#bar-menu-inventory > #bar-menu-inventory-select-btn{
+    flex: 1;
+    display: flex;
+}
+  
+#bar-menu-inventory > #bar-menu-inventory-select-btn > button {
+    margin:0 10px;
+}
+
+#bar-menu-inventory > #bar-menu-inventory-delete-btn{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#bar-menu-inventory > #bar-menu-inventory-delete-btn >  button {
+    margin:0 10px;
+}

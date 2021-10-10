@@ -53,6 +53,18 @@
 
             </table>
       </section>
+      <section>
+        <div id="bar-menu-inventory">
+          <div id="bar-menu-inventory-select-btn">
+              <button class="btn btn-outline-light" onclick="allCheckproduct()">Select All</button>
+              <button class="btn btn-outline-light" onclick="allUncheckproduct()">Clear Selection</button>
+          </div>
+          <div><span id="amount-product-selected"></span> Selected</div>
+          <div id="bar-menu-inventory-delete-btn">
+              <button class="btn btn-outline-light" onClick="productDeleteBtn()">Delete</button>
+          </div>
+        </div>    
+      </section>
   </main>
 
   <div class="footerGen"></div>
@@ -61,6 +73,7 @@
     <script src="scripts/api.js"></script>
     <script src="scripts/components/nav.js"></script>
     <script src="scripts/components/newProduct.js"></script>
+    <script src="scripts/components/productDeleteBar.js"></script>
     <script src="scripts/warehouse.js"></script>
     <script src="scripts/components/footer.js"></script>
 </body>

@@ -42,5 +42,23 @@ const API = {
         }catch(err) {
             throw err;
         }
+    },
+
+    async deleteProduct(productIdarr, warehouseId, childCompanyId) {
+        console.log(productIdarr)
+        try{
+            const res = await fetch('/api/warehouse/delete/product/', {
+                method: "PUT",
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify({productIdarr, warehouseId, childCompanyId})
+                });
+            if(res.ok){
+                return res.json();
+            }else{
+                return Promise.reject({message: 'Something problem.'})
+            }
+        }catch(err) {
+            throw err;
+        }
     }
 }
