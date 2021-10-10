@@ -48,6 +48,9 @@ async function productDeleteBtn(){
      // Watch if Product lists are selected or not.
      initWatchSelect();
 
+    // To Update product on a warehouse.
+    initUpdateModal();
+
 }
 
 function clickHandle(e) {
