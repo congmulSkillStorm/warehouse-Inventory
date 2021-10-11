@@ -63,7 +63,7 @@ const API = {
     },
 
     async deleteProduct(productIdarr, warehouseId, childCompanyId) {
-        console.log(productIdarr)
+        // console.log(productIdarr)
         try{
             const res = await fetch('/api/warehouse/delete/product/', {
                 method: "PUT",

@@ -48,7 +48,11 @@ async function updateOnclick(event) {
         inputUpdateSqft.value = "";
 
         closeUpdateModal();
-    
+
+
+        // Watch if products are checked to delete on product list // scripts/components/productDeleteBar.js
+        initWatchSelect();
+
         // To Update product on a warehouse.
         initUpdateModal();
 

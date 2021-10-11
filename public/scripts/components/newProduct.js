@@ -44,8 +44,8 @@ async function handleModalForm(event) {
 
       closeModal();
 
-      // To Update product on a warehouse.
-      initUpdateModal();
+      // Watch if products are checked to delete on product list // scripts/components/productDeleteBar.js
+      initWatchSelect();
 
       // To Update product on a warehouse.
       initUpdateModal();
