@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
             if(req.session.isParentCompany){
                 res.status(200).redirect('/home');
             }else{
-                res.status(200).redirect('/warehouse');
+                res.status(200).redirect(`/warehouse?childCompanyId=${req.session.companyId}`);
             }
         });
     }catch(err) {
