@@ -1,6 +1,11 @@
 import { Warehouse, Company } from '../models/index.js';
 import mongoose from 'mongoose';
 
+export const getAllWarehouse = async(warehouseId) => {
+    const warehouse = await Warehouse.find({});
+    return warehouse;
+}
+
 export const getWarehouse = async(warehouseId) => {
     const warehouse = await Warehouse.find({_id: warehouseId});
     return warehouse;

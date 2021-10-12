@@ -1,4 +1,32 @@
-function searchFunction(childCompanies) {
+function createProductLists(allProductlistDisplay) {
+    let allQueries = ``;
+
+    allProductlistDisplay.forEach(product => {
+        allQueries += `
+        <li class=li-search-options data-product-id=${product._id}>${product.productName}</li>`
+    })
+
+    return allQueries;
+}
+
+async function warehousesDatawithProduct() {
+    try{
+        const allWarehouses = await API.getAllWarehouse();
+        console.log(allWarehouses)
+
+        let allProductlist = [];
+        allWarehouses.forEach(warehouse => {
+            allProductlist = [...allProductlist, ...warehouse.product ]
+        })
+        // console.log(allProductlist);
+        return allProductlist;
+
+    }catch(err){
+        console.log(err);
+    }
+}
+
+async function searchFunction(childCompanies) {
     // console.log(childCompanies);
     const searchInputForParentComEl = document.getElementById('search-form-input');
     const searchList = document.getElementById('search-list');
@@ -6,6 +34,13 @@ function searchFunction(childCompanies) {
     const liSearchOptionsEls = document.getElementsByClassName('li-search-options');
     const searchFormForParentCompanyEl = document.getElementById('search-form-for-parentCompany');
     
+    const allProductlistOriginal = await warehousesDatawithProduct();
+    console.log(allProductlistOriginal);
+    let allProductlistDisplay = allProductlistOriginal.filter((product, index)=> {
+        return index < 10;
+    })
+
+    console.log(allProductlistDisplay);
 
     function onFucusSearchBar() {
         if(searchbarOptionEl.value === "productName"){
@@ -24,6 +59,9 @@ function searchFunction(childCompanies) {
 
             // rerender main page
             init(childCompanies);
+
+            // Display Product lists (10ea)
+            document.getElementById('ul-search-form').innerHTML = createProductLists(allProductlistDisplay);
         }
     }
 
@@ -45,6 +83,22 @@ function searchFunction(childCompanies) {
         element.addEventListener('click', onClickListText);
     }
     searchFormForParentCompanyEl.addEventListener('click', onClickSearchBarBtn);
+
+
+    searchInputForParentComEl.addEventListener("keyup", function(event){
+        if(document.getElementById('search-options').value === "productName"){
+            let userInput = searchInputForParentComEl.value
+            allProductlistOriginal;
+          let originalProductList = allProductlistOriginal;
+          let allProductlistDisplay = originalProductList.filter(function(product, index) {
+
+            return product.productName.toLowerCase().includes(userInput)
+            
+            });
+            console.log(allProductlistDisplay)
+        }
+      })
+
 
     window.onclick = function(event) {
         let isSearchBar = searchInputForParentComEl === event.target;
