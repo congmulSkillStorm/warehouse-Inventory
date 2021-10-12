@@ -1,10 +1,11 @@
-function searchFunction() {
+function searchFunction(childCompanies) {
+    // console.log(childCompanies);
     const searchInputForParentComEl = document.getElementById('search-form-input');
     const searchList = document.getElementById('search-list');
     const searchbarOptionEl = document.getElementById('search-options');
     const liSearchOptionsEls = document.getElementsByClassName('li-search-options');
     const searchFormForParentCompanyEl = document.getElementById('search-form-for-parentCompany');
-
+    
 
     function onFucusSearchBar() {
         if(searchbarOptionEl.value === "productName"){
@@ -16,8 +17,13 @@ function searchFunction() {
     function onChangeSearchOption() {
         if(searchbarOptionEl.value === "companyName"){
             searchInputForParentComEl.placeholder = 'Search for ' + "Companies"
+            searchInputForParentComEl.value = "";
         }else{
             searchInputForParentComEl.placeholder = 'Search for ' + "Products"
+            searchInputForParentComEl.value = "";
+
+            // rerender main page
+            init(childCompanies);
         }
     }
 

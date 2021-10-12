@@ -185,7 +185,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         init(childCompanies[0].childCompany);
 
         // Active Search Function. script/components/searchFunction();
-        searchFunction();
+        console.log(childCompanies[0].childCompany);
+        searchFunction(childCompanies[0].childCompany);
 
         // const childCompanybtnEl = document.getElementsByClassName('childcompany-btn');
         // for(let element of childCompanybtnEl){
@@ -193,12 +194,15 @@ window.addEventListener('DOMContentLoaded', async () => {
         // }
 
         // Search Form
+        
         document.getElementById('search-form-input').addEventListener("keyup", function(event){
-          let userInput = document.getElementById('search-form-input').value;
-          let originalChildCom = childCompanies[0].childCompany;
-          let selectedChildCom = originalChildCom.filter(childCom => childCom.companyName.toLowerCase().includes(userInput));
-          // console.log(selectedChildCom);
-          init(selectedChildCom);
+          if(document.getElementById('search-options').value === "companyName"){
+            let userInput = document.getElementById('search-form-input').value;
+            let originalChildCom = childCompanies[0].childCompany;
+            let selectedChildCom = originalChildCom.filter(childCom => childCom.companyName.toLowerCase().includes(userInput));
+            // console.log(selectedChildCom);
+            init(selectedChildCom);
+          }
         })
 
     }catch(err) {
