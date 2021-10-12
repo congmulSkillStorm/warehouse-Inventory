@@ -8,9 +8,10 @@
 
 .search-modal{
     position: relative;
+    display: none;
     width: 100%;
     opacity: 0%;
-    transition: all 0.1s ease-out;
+    transition: opacity 0.1s ease-out;
 }
 .search-modal ul{
     position: absolute;
@@ -24,10 +25,7 @@
 }
 
 .search-modal ul li{
-    padding: 8px 10px 0px 20px;
-}
-.search-modal ul li:last-child{
-    padding-bottom: 8px;
+    padding: 8px 10px 8px 20px;
 }
 
 .search-modal ul li:hover{
