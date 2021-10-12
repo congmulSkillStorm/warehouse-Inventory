@@ -185,7 +185,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         init(childCompanies[0].childCompany);
 
         // Active Search Function. script/components/searchFunction();
-        console.log(childCompanies[0].childCompany);
+        // console.log(childCompanies[0].childCompany);
         searchFunction(childCompanies[0].childCompany);
 
         // const childCompanybtnEl = document.getElementsByClassName('childcompany-btn');
