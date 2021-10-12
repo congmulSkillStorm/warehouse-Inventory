@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/components/nav.css">
+    <link rel="stylesheet" href="styles/components/searchForm.css">
     <link rel="stylesheet" href="styles/homePage.css">
 
     
@@ -38,13 +39,26 @@
           </nav> -->
     </header>
     <aside class="container contentBox">
-      <form class="d-flex">
-        <input class="form-control me-2" list="search-data-lists" type="search" id="search-form-input" placeholder="Company name, Product name" aria-label="Search">
-        <datalist id="search-data-lists">
-          <option data-warehouse-id="123" value="Something"></option>
-          <option data-product-id="567" value="Something Else"></option>
-          <option data-company-id="890" value="Another One"></option>
-        </datalist>
+      <form class="input-group mb-3">
+        <div class="input-group-prepend">
+          <select class="input-group-text" id="search-options">
+              <option selected value="companyName">Company</option>
+              <option value="productName">Product</option>
+          </select>
+        </div>
+        <div class="input-form">
+          <input class="form-control" list="search-data-lists" type="search" id="search-form-input" placeholder="Search for Companies" aria-label="Search">
+          <div class="search-modal" id="search-list">
+            <ul>
+                <li>
+                    list01
+                </li>
+                <li>
+                    list01
+                </li>
+            </ul>
+          </div>
+        </div>
         <button class="btn btn-outline-success" type="submit" id="search-form-for-parentCompany">Search</button>
       </form>
     </aside>
