@@ -114,7 +114,7 @@ async function searchFunction(childCompanies) {
             let userInput = searchInputForParentComEl.value
             allProductlistOriginal;
             let originalProductList = allProductlistOriginal;
-            let allProductlistDisplay = originalProductList.filter(product => product.productName.toLowerCase().includes(userInput));
+            let allProductlistDisplay = originalProductList.filter(product => product.productName.toLowerCase().includes(userInput.toLowerCase()));
 
             if(allProductlistDisplay.length > 10){
                 // Display Product lists (10 products)

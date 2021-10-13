@@ -106,7 +106,7 @@ const navQueries = (companyName, isMasterUser, isParentCompany, warehouseIDs) =>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             ${isMasterUser ? 
                 (`<li class="nav-item">
-                    <a class="nav-link active" href="#">New Company</a>
+                    <a class="nav-link active" href="#">Hi ${companyName}</a>
                 </li>`)
             :
                 (`<li class="nav-item">
