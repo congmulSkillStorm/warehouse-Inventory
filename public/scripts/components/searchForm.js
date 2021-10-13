@@ -80,7 +80,12 @@ async function searchFunction(childCompanies) {
         
         // Call Warehouse by Product ID
         const seletedWarehouse = await API.getWarehouseByProductId(productId);
+        // Call company by warehouse ID
         console.log(seletedWarehouse);
+        const seletedCompany = await API.getChildCompanyByWarehouseId(seletedWarehouse[0]._id)
+        console.log(seletedCompany)
+
+        
     }
 
     function onClickSearchBarBtn(event) {

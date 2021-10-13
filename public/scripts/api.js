@@ -17,6 +17,15 @@ const API = {
         }
     },
 
+    async getChildCompanyByWarehouseId(warehouseId) {
+        try {
+            const res = await fetch(`/api/company/warehouse/${warehouseId}`);
+            return res.json();
+        }catch(err){
+            console.error(err);
+        }
+    },
+
     async getAllWarehouse() {
         try {
             const res = await fetch(`/api/warehouse/`);

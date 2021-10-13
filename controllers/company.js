@@ -49,3 +49,10 @@ export const getChildCompnay = async(companyId) => {
     const childcompany = await Company.find({_id: companyId}).populate('warehouse');
     return childcompany;
 }
+
+
+export const getChildCompnayByWarehouseId = async(warehouseId) => {
+    const childcompany = await Company.find({"warehouseBasicInfo._id": warehouseId}).populate('warehouse');
+   console.log(warehouseId)
+    return childcompany;
+}
