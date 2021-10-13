@@ -13,6 +13,8 @@ const warehouseOnchange = async (event) => {
     // Dispaly Product Table
     if(warehouseData[0].product.length > 0){
         document.getElementById('display-product-table').innerHTML = productTable(warehouseData[0].product);
+    }else{
+      document.getElementById('display-product-table').innerHTML = productTable([]);
     }
     // Watch if products are checked to delete on product list // scripts/components/productDeleteBar.js
     initWatchSelect();
