@@ -35,6 +35,15 @@ const API = {
         }
     },
 
+    async getWarehouseByProductId(productId) {
+        try {
+            const res = await fetch(`/api/warehouse/product/${productId}`);
+            return res.json();
+        }catch(err){
+            console.error(err);
+        }
+    },
+
     async createProduct(productData, childCompanyId) {
         try{
             const res = await fetch('/api/warehouse/' + childCompanyId, {

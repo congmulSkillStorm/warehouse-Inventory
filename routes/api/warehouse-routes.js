@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { getAllWarehouse, getWarehouse, createProduct, updateProduct, deleteProduct } from '../../controllers/warehouse.js';
+import { getAllWarehouse, getWarehouse, getWarehouseByProductId, createProduct, updateProduct, deleteProduct } from '../../controllers/warehouse.js';
 
 const router = Router();
 
 // /api/warehouse/
 
-// Get One Warehouse
+// Get all Warehouse
 router.get('/', async (req, res) => {
     try {
         // console.log("warehouseId", warehouseId);
@@ -25,6 +25,21 @@ router.get('/:id', async (req, res) => {
         const warehouseId = req.params.id;
         // console.log("warehouseId", warehouseId);
         const response = await getWarehouse(warehouseId);
+        // console.log(response);
+        res.status(200).json(response);
+
+    }catch(err) {
+        console.error(err)
+        res.status(500).json(err);
+    }
+});
+
+// Get One Warehouse by ProductId 
+router.get('/product/:id', async (req, res) => {
+    try {
+        const productId = req.params.id;
+        // console.log("productId", productId);
+        const response = await getWarehouseByProductId(productId);
         // console.log(response);
         res.status(200).json(response);
 

@@ -1,10 +1,12 @@
 function createProductLists(allProductlistDisplay) {
     let allQueries = ``;
-
-    allProductlistDisplay.forEach(product => {
-        allQueries += `
-        <li class=li-search-options data-product-id=${product._id}>${product.productName}</li>`
-    })
+    // console.log(allProductlistDisplay)
+    if(allProductlistDisplay != null){
+        allProductlistDisplay.forEach(product => {
+            allQueries += `
+            <li class=li-search-options data-product-id=${product._id}>${product.productName}</li>`
+        })
+    }
 
     return allQueries;
 }
@@ -12,7 +14,7 @@ function createProductLists(allProductlistDisplay) {
 async function warehousesDatawithProduct() {
     try{
         const allWarehouses = await API.getAllWarehouse();
-        console.log(allWarehouses)
+        // console.log(allWarehouses)
 
         let allProductlist = [];
         allWarehouses.forEach(warehouse => {
@@ -31,16 +33,16 @@ async function searchFunction(childCompanies) {
     const searchInputForParentComEl = document.getElementById('search-form-input');
     const searchList = document.getElementById('search-list');
     const searchbarOptionEl = document.getElementById('search-options');
-    const liSearchOptionsEls = document.getElementsByClassName('li-search-options');
+    let liSearchOptionsEls;
     const searchFormForParentCompanyEl = document.getElementById('search-form-for-parentCompany');
     
+    // get All product Lists
     const allProductlistOriginal = await warehousesDatawithProduct();
-    console.log(allProductlistOriginal);
+    // console.log(allProductlistOriginal);
     let allProductlistDisplay = allProductlistOriginal.filter((product, index)=> {
         return index < 10;
     })
-
-    console.log(allProductlistDisplay);
+    // console.log(allProductlistDisplay);
 
     function onFucusSearchBar() {
         if(searchbarOptionEl.value === "productName"){
@@ -60,49 +62,67 @@ async function searchFunction(childCompanies) {
             // rerender main page
             init(childCompanies);
 
-            // Display Product lists (10ea)
+            // Display Product lists (10 products)
             document.getElementById('ul-search-form').innerHTML = createProductLists(allProductlistDisplay);
+            liSearchOptionsEls = document.getElementsByClassName('li-search-options');
+            for (const element of liSearchOptionsEls) {
+                element.addEventListener('click', onClickListText);
+            }
         }
     }
 
-    function onClickListText(event) {
-        let seletecListforSearch = event.target.innerText;
-        searchInputForParentComEl.value = seletecListforSearch;
+    async function onClickListText(event) {
+        let selectedProduct = event.target.innerText;
+        let productId = event.target.dataset.productId;
+        searchInputForParentComEl.value = selectedProduct;
+
+        console.log(selectedProduct, productId);
         
+        // Call Warehouse by Product ID
+        const seletedWarehouse = await API.getWarehouseByProductId(productId);
+        console.log(seletedWarehouse);
     }
 
     function onClickSearchBarBtn(event) {
         event.preventDefault();
-        console.log("Search Clicking", searchInputForParentComEl.value);
+        console.log("Search Clicking", searchInputForParentComEl.value, );
     }
 
     searchInputForParentComEl.addEventListener("focus", onFucusSearchBar);
     
-    searchbarOptionEl.addEventListener('change', onChangeSearchOption)
-    for (const element of liSearchOptionsEls) {
-        element.addEventListener('click', onClickListText);
-    }
-    searchFormForParentCompanyEl.addEventListener('click', onClickSearchBarBtn);
+    searchbarOptionEl.addEventListener('change', onChangeSearchOption);
 
+    // for (const element of liSearchOptionsEls) {
+    //     element.addEventListener('click', onClickListText);
+    // }
+    searchFormForParentCompanyEl.addEventListener('click', onClickSearchBarBtn);
 
     searchInputForParentComEl.addEventListener("keyup", function(event){
         if(document.getElementById('search-options').value === "productName"){
             let userInput = searchInputForParentComEl.value
             allProductlistOriginal;
-          let originalProductList = allProductlistOriginal;
-          let allProductlistDisplay = originalProductList.filter(function(product, index) {
+            let originalProductList = allProductlistOriginal;
+            let allProductlistDisplay = originalProductList.filter(product => product.productName.toLowerCase().includes(userInput));
 
-            return product.productName.toLowerCase().includes(userInput)
-            
-            });
-            console.log(allProductlistDisplay)
+            if(allProductlistDisplay.length > 10){
+                // Display Product lists (10 products)
+                document.getElementById('ul-search-form').innerHTML = createProductLists(allProductlistDisplay.splice(0, 10));
+            }else{
+                document.getElementById('ul-search-form').innerHTML = createProductLists(allProductlistDisplay);
+            }
+
+            liSearchOptionsEls = document.getElementsByClassName('li-search-options');
+            for (const element of liSearchOptionsEls) {
+                element.addEventListener('click', onClickListText);
+            }
         }
       })
 
 
     window.onclick = function(event) {
-        let isSearchBar = searchInputForParentComEl === event.target;
-
+        let isSearchBar = (searchInputForParentComEl === event.target);
+        // console.log(event.target);
+        // console.log(isSearchBar)
         // console.log("searchList.getAttribut", window.getComputedStyle(searchList).display)
 
         if(window.getComputedStyle(searchList).display === "block"){

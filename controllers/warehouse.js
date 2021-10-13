@@ -11,6 +11,11 @@ export const getWarehouse = async(warehouseId) => {
     return warehouse;
 }
 
+export const getWarehouseByProductId = async(productId) => {
+    const warehouse = await Warehouse.find({"product._id": productId});
+    return warehouse;
+}
+
 export const createProduct = async(productData, childCompanyId) => {
     // Find Warehouse by Id
     // Get currentCapacity
