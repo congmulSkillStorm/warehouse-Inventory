@@ -133,42 +133,77 @@ const childCompanyHTMLquery = (companyData) => {
 function displayAllChildCompanies(childCompanies) {
     // console.log(childCompanies);
     let allQueries = "";
-    childCompanies.childCompany.forEach(company => {
+    childCompanies.forEach(company => {
         allQueries += childCompanyHTMLquery(company);
     })
     return allQueries;
 }
 
+function init(childCompanies) {
+  // console.log(childCompanies);
+  const allCompanyQuery = displayAllChildCompanies(childCompanies);
+  document.getElementById('display-child-company').innerHTML = allCompanyQuery;
+  
+  // Display Graph
+  let allWarehouse = [];
+  childCompanies.forEach(company => {
+      if(company.warehouseBasicInfo.length > 0){
+          allWarehouse = [...allWarehouse, ...company.warehouseBasicInfo];
+      }
+  }) 
 
+  // console.log("allWarehouse", allWarehouse)
+  allWarehouse.forEach(warehouse => {
+      displayGraph(warehouse);
+  })
+}
 
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         const childCompanies = await API.getChildCompanies();
         // console.log(childCompanies);
-        const allCompanyQuery = displayAllChildCompanies(childCompanies[0]);
-        document.getElementById('display-child-company').innerHTML = allCompanyQuery;
+        // const allCompanyQuery = displayAllChildCompanies(childCompanies[0]);
+        // document.getElementById('display-child-company').innerHTML = allCompanyQuery;
 
 
         // NavBar Generator from scripts/components
         navGenInit(childCompanies[0]);
         
-        // Display Graph
-        let allWarehouse = [];
-        childCompanies[0].childCompany.forEach(company => {
-            if(company.warehouseBasicInfo.length > 0){
-                allWarehouse = [...allWarehouse, ...company.warehouseBasicInfo];
-            }
-        }) 
+        // // Display Graph
+        // let allWarehouse = [];
+        // childCompanies[0].childCompany.forEach(company => {
+        //     if(company.warehouseBasicInfo.length > 0){
+        //         allWarehouse = [...allWarehouse, ...company.warehouseBasicInfo];
+        //     }
+        // }) 
 
-        // console.log("allWarehouse", allWarehouse)
-        allWarehouse.forEach(warehouse => {
-            displayGraph(warehouse);
+        // // console.log("allWarehouse", allWarehouse)
+        // allWarehouse.forEach(warehouse => {
+        //     displayGraph(warehouse);
+        // })
+
+        init(childCompanies[0].childCompany);
+
+        // Active Search Function. script/components/searchFunction();
+        // console.log(childCompanies[0].childCompany);
+        searchFunction(childCompanies[0].childCompany);
+
+        // const childCompanybtnEl = document.getElementsByClassName('childcompany-btn');
+        // for(let element of childCompanybtnEl){
+        //   element.onclick = childCompanyOnClick;
+        // }
+
+        // Search Form
+        
+        document.getElementById('search-form-input').addEventListener("keyup", function(event){
+          if(document.getElementById('search-options').value === "companyName"){
+            let userInput = document.getElementById('search-form-input').value;
+            let originalChildCom = childCompanies[0].childCompany;
+            let selectedChildCom = originalChildCom.filter(childCom => childCom.companyName.toLowerCase().includes(userInput));
+            // console.log(selectedChildCom);
+            init(selectedChildCom);
+          }
         })
-
-        const childCompanybtnEl = document.getElementsByClassName('childcompany-btn');
-        for(let element of childCompanybtnEl){
-          element.onclick = childCompanyOnClick;
-        }
 
     }catch(err) {
         console.error(err);

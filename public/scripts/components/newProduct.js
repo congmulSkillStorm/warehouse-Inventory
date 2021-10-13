@@ -13,10 +13,10 @@ async function handleModalForm(event) {
     productData.quantity = inputQuantityEl.value.trim();
     productData.sqft = inputSqftEl.value.trim();
 
-    console.log("productData", productData);
+    // console.log("productData", productData);
 
     const childCompanyId = location.search.split("=")[1];
-    console.log("childCompanyId", childCompanyId)
+    // console.log("childCompanyId", childCompanyId)
     
 
     // Create new product & Update web page with new information.
@@ -44,8 +44,8 @@ async function handleModalForm(event) {
 
       closeModal();
 
-      // To Update product on a warehouse.
-      initUpdateModal();
+      // Watch if products are checked to delete on product list // scripts/components/productDeleteBar.js
+      initWatchSelect();
 
       // To Update product on a warehouse.
       initUpdateModal();
@@ -65,9 +65,9 @@ async function handleModalForm(event) {
 
 
 const newProductOnclick = (event) => {
-    console.log("in newProductOnclick", event.target.dataset.id);
+    // console.log("in newProductOnclick", event.target.dataset.id);
     let warehouseArr = event.target.dataset.id.split(",");
-    console.log(warehouseArr);
+    // console.log(warehouseArr);
 
     openModal();
 }

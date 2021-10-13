@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createCompany, loginCompany, getChildCompanies, getChildCompnay } from '../../controllers/company.js';
+import { createCompany, loginCompany, getChildCompanies, getChildCompnay, getChildCompnayByWarehouseId } from '../../controllers/company.js';
 
 const router = Router();
 
@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
             if(req.session.isParentCompany){
                 res.status(200).redirect('/home');
             }else{
-                res.status(200).redirect('/warehouse');
+                res.status(200).redirect(`/warehouse?childCompanyId=${req.session.companyId}`);
             }
         });
     }catch(err) {
@@ -71,7 +71,22 @@ router.get('/:id', async (req, res) => {
         const companyId = req.params.id;
         console.log("companyId", companyId);
         const response = await getChildCompnay(companyId);
-        console.log(response);
+        // console.log(response);
+        res.status(200).json(response);
+
+    }catch(err) {
+        console.error(err)
+        res.status(500).json(err);
+    }
+})
+
+// Get One Child Company by warehouse
+router.get('/warehouse/:id', async (req, res) => {
+    try {
+        const warehouseId = req.params.id;
+        // console.log("warehouseId", warehouseId);
+        const response = await getChildCompnayByWarehouseId(warehouseId);
+        // console.log(response);
         res.status(200).json(response);
 
     }catch(err) {

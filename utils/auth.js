@@ -1,11 +1,11 @@
 const withParentCompany = (req, res, next) => {
-    console.log(req.session.companyId);
+    // console.log(req.session.companyId);
     if(!req.session.loggedIn){
         res.redirect("/");
     }
 
     if (!req.session.isParentCompany) {
-      res.redirect("/warehouse");
+      res.redirect(`/warehouse?childCompanyId=${req.session.companyId}`);
     } else {
       next();
     }

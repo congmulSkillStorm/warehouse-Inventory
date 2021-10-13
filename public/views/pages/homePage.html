@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/components/nav.css">
+    <link rel="stylesheet" href="styles/components/searchForm.css">
     <link rel="stylesheet" href="styles/homePage.css">
 
     
@@ -36,13 +37,37 @@
               </div>
             </div>
           </nav> -->
-          <div class="container contentBox">
-                <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-          </div>
     </header>
+    <aside class="container contentBox">
+      <form class="input-group mb-3">
+        <div class="input-group-prepend">
+          <select class="input-group-text" id="search-options">
+              <option selected value="companyName">Company</option>
+              <option value="productName">Product</option>
+          </select>
+        </div>
+        <div class="input-form">
+          <input class="form-control" list="search-data-lists" type="search" id="search-form-input" placeholder="Search for Companies" autocomplete="off" aria-label="Search">
+          <div class="search-modal" id="search-list">
+            <ul id="ul-search-form">
+                <li class="li-search-options">
+                    list01
+                </li>
+                <li class="li-search-options">
+                    list02
+                </li>
+                <li class="li-search-options">
+                    list03
+                </li>
+                <li class="li-search-options">
+                    list04
+                </li>
+            </ul>
+          </div>
+        </div>
+        <button class="btn btn-outline-success" type="submit" id="search-form-for-parentCompany">Search</button>
+      </form>
+    </aside>
     <main>
         <section class="container contentBox" id="display-child-company">
           <article>
@@ -102,6 +127,7 @@
     <script src="scripts/api.js"></script>
     <script src="scripts/components/nav.js"></script>
     <script src="scripts/homePage.js"></script>
+    <script src="scripts/components/searchForm.js"></script>
     <script src="scripts/components/footer.js"></script>
     <!-- <script>
       const labels = [

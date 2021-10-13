@@ -21,13 +21,13 @@ function allUncheckproduct(){
 } 
 
 async function productDeleteBtn(){
-    console.log(checkedItemsArr);
+    // console.log(checkedItemsArr);
     const childCompanyId = location.search.split("=")[1];
     const warehouseId = document.getElementById('display-warehouse-name').dataset.warehouseId;
-    console.log(childCompanyId, warehouseId);
+    // console.log(childCompanyId, warehouseId);
     //  Call Delete Product API
     const response = await API.deleteProduct(checkedItemsArr, warehouseId, childCompanyId);
-    console.log(response);
+    // console.log(response);
 
     // Reset CheckedItem Array and Invisible delete bar
     checkedItemsArr = [];
@@ -68,7 +68,7 @@ function clickHandle(e) {
         document.getElementById('bar-menu-inventory').style.width = '0';
         document.getElementById('bar-menu-inventory').style.opacity = '0';
     }
-    console.log(checkedItemsArr);
+    // console.log(checkedItemsArr);
 }
 
 function initWatchSelect() {

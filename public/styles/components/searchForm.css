@@ -1,0 +1,34 @@
+.input-form{
+    flex: 1 0 auto;
+}
+
+#search-options{
+    height: 100%;
+}
+
+.search-modal{
+    position: relative;
+    display: none;
+    width: 100%;
+    opacity: 0%;
+    transition: opacity 0.1s ease-out;
+}
+.search-modal ul{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    background-color: white;
+    border: 1px solid rgb(230, 230, 230);
+    box-shadow: 3px 3px 10px rgb(230, 230, 230);
+}
+
+.search-modal ul li{
+    padding: 8px 10px 8px 20px;
+}
+
+.search-modal ul li:hover{
+    cursor: pointer;
+    background-color: rgb(230,230,230);
+}
