@@ -85,7 +85,14 @@ async function searchFunction(childCompanies) {
         const seletedCompany = await API.getChildCompanyByWarehouseId(seletedWarehouse[0]._id)
         console.log(seletedCompany)
 
-        
+        let userConfirm = window.confirm(`
+        ${selectedProduct} is in ${seletedWarehouse[0].warehouseName}.
+
+        Do you wanted to check the page?`)
+        // Redirect to the warehouse that has the product!
+        if(userConfirm){
+            window.location = `/warehouse?warehouseId=${seletedCompany[0]._id}`
+        }
     }
 
     function onClickSearchBarBtn(event) {
