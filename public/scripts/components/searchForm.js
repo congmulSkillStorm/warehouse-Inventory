@@ -86,7 +86,7 @@ async function searchFunction(childCompanies) {
         console.log(seletedCompany)
 
         let userConfirm = window.confirm(`
-        ${selectedProduct} is in ${seletedWarehouse[0].warehouseName}.
+        ${selectedProduct} is in ${seletedWarehouse[0].warehouseName} in ${seletedCompany[0].companyName} company.
 
         Do you wanted to check the page?`)
         // Redirect to the warehouse that has the product!
