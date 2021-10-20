@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import { Company } from '../models/index.js';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/warehouse-inventory-v2', {
   useNewUrlParser: true,
   useUnifiedTopology: true
